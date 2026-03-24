@@ -102,19 +102,65 @@ const whyChooseObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
             
-            // Start typing animation when entire section is visible
+            // Start looping typing animation when entire section is visible
             const typingElement = document.querySelector('.typing-animation');
-            if (typingElement && !typingElement.classList.contains('typing-started')) {
-                typingElement.classList.add('typing-started');
-                setTimeout(() => {
-                    typingElement.classList.add('finished');
-                }, 3000);
+            if (typingElement && !typingElement.classList.contains('animation-started')) {
+                typingElement.classList.add('animation-started');
+                startLoopingTyping(typingElement);
             }
         }
     });
 }, {
     threshold: 0.4
 });
+
+// Services section scroll animation
+const servicesObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+// Function to create looping typing animation with backspace
+function startLoopingTyping(element) {
+    console.log('Starting typing animation'); // Debug log
+    
+    function typeAndBackspace() {
+        // Reset to initial state
+        element.classList.remove('typing', 'backspacing');
+        element.style.width = '0';
+        element.offsetHeight; // Trigger reflow
+        
+        // Start typing animation
+        element.classList.add('typing');
+        
+        // After typing completes (3s), wait 2s then start backspace
+        setTimeout(() => {
+            element.classList.remove('typing');
+            element.offsetHeight; // Trigger reflow
+            
+            // Start backspace animation
+            element.classList.add('backspacing');
+            
+            // After backspace completes (1.5s), wait 1s then restart
+            setTimeout(() => {
+                element.classList.remove('backspacing');
+                element.offsetHeight; // Trigger reflow
+                
+                // Wait 1 second then restart the cycle
+                setTimeout(() => {
+                    typeAndBackspace();
+                }, 1000);
+            }, 1500);
+        }, 5000); // 3s typing + 2s display
+    }
+    
+    typeAndBackspace();
+}
 
 // Observe about section elements
 document.addEventListener('DOMContentLoaded', function() {
@@ -130,7 +176,50 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (whyChooseLeft) whyChooseObserver.observe(whyChooseLeft);
     if (whyChooseRight) whyChooseObserver.observe(whyChooseRight);
+    
+    // Test typing animation immediately
+    const typingElement = document.querySelector('.typing-animation');
+    if (typingElement && !typingElement.classList.contains('animation-started')) {
+        typingElement.classList.add('animation-started');
+        setTimeout(() => {
+            startLoopingTyping(typingElement);
+        }, 1000); // Start after 1 second
+    }
+    
+    // Observe Services section cards
+    const serviceCards = document.querySelectorAll('.service-card-left, .service-card-right');
+    serviceCards.forEach(card => {
+        servicesObserver.observe(card);
+    });
 });
+
+// FAQ Toggle Function
+function toggleFAQ(button) {
+    const content = button.nextElementSibling;
+    const icon = button.querySelector('i');
+    const allFAQs = document.querySelectorAll('.faq-content');
+    const allIcons = document.querySelectorAll('.faq-toggle i');
+    
+    // Close all other FAQs first
+    allFAQs.forEach((faq, index) => {
+        if (faq !== content && !faq.classList.contains('hidden')) {
+            faq.classList.add('hidden');
+            allIcons[index].classList.remove('rotate-180');
+        }
+    });
+    
+    // Toggle current FAQ
+    if (content.classList.contains('hidden')) {
+        // Opening: Remove hidden class first, then force reflow for animation
+        content.classList.remove('hidden');
+        content.offsetHeight; // Force reflow
+        icon.classList.add('rotate-180');
+    } else {
+        // Closing: Add hidden class to trigger closing animation
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+    }
+}
 
 // Mobile service area toggle
 function toggleMobileServiceArea() {
