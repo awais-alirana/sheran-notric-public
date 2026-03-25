@@ -393,9 +393,9 @@ input:focus, textarea:focus, select:focus {
 .faq-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
     opacity: 0;
     transform: translateY(20px);
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out, margin 0.4s ease-out, opacity 0.3s ease-out 0.1s, transform 0.3s ease-out 0.1s;
 }
 
 .faq-content:not(.hidden) {
@@ -403,7 +403,7 @@ input:focus, textarea:focus, select:focus {
     padding-top: 0.75rem;
     opacity: 1;
     transform: translateY(0);
-    transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out 0.1s, transform 0.3s ease-out 0.1s;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out, margin 0.4s ease-out, opacity 0.4s ease-out 0.2s, transform 0.4s ease-out 0.2s;
 }
 
 .faq-toggle i {
@@ -412,6 +412,27 @@ input:focus, textarea:focus, select:focus {
 
 .faq-toggle i.rotate-180 {
     transform: rotate(180deg);
+}
+
+/* FAQ Question Animation */
+.faq-toggle {
+    transition: all 0.3s ease-out;
+}
+
+.faq-toggle:hover {
+    transform: translateX(5px);
+}
+
+.faq-toggle:active {
+    transform: translateX(2px) scale(0.98);
+}
+
+.faq-toggle h3 {
+    transition: color 0.3s ease-out;
+}
+
+.faq-toggle:hover h3 {
+    color: #B03030;
 }
 
 /* Services section animations */

@@ -125,6 +125,75 @@ const servicesObserver = new IntersectionObserver((entries) => {
     threshold: 0.2
 });
 
+// FAQ section scroll animations
+const faqLeftObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add('animated');
+            }, 200); // Slight delay for left side
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+const faqRightObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add('animated');
+            }, 400); // Slight delay for right side
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+// Stats counter animation
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 2000; // 2 seconds
+    const startTime = performance.now();
+    const startValue = 0;
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        
+        const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
+        element.textContent = currentValue;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target;
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// Stats section observer
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.counter');
+            counters.forEach((counter, index) => {
+                setTimeout(() => {
+                    animateCounter(counter);
+                }, index * 200); // Stagger animations
+            });
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.5
+});
+
 // Function to create looping typing animation with backspace
 function startLoopingTyping(element) {
     console.log('Starting typing animation'); // Debug log
@@ -191,7 +260,126 @@ document.addEventListener('DOMContentLoaded', function() {
     serviceCards.forEach(card => {
         servicesObserver.observe(card);
     });
+    
+    // Observe FAQ section elements
+    const faqLeft = document.querySelector('.faq-left-section');
+    const faqRight = document.querySelector('.faq-right-section');
+    
+    if (faqLeft) faqLeftObserver.observe(faqLeft);
+    if (faqRight) faqRightObserver.observe(faqRight);
+    
+    // Observe Stats section
+    const statsSection = document.getElementById('stats');
+    if (statsSection) statsObserver.observe(statsSection);
 });
+
+// Testimonial Carousel
+let currentTestimonialSlide = 0;
+const carousel = document.getElementById('testimonial-carousel');
+const dots = document.querySelectorAll('.testimonial-dot');
+let isTransitioning = false;
+
+// Clone cards to create seamless loop
+function initializeCarousel() {
+    const cards = carousel.children;
+    const cardCount = cards.length;
+    
+    // Clone all cards and append to create seamless loop
+    for (let i = 0; i < cardCount; i++) {
+        const clone = cards[i].cloneNode(true);
+        carousel.appendChild(clone);
+    }
+}
+
+function updateCarousel(instant = false) {
+    if (instant) {
+        carousel.style.transition = 'none';
+    } else {
+        carousel.style.transition = 'transform 0.5s ease-in-out';
+    }
+    
+    const slideWidth = window.innerWidth >= 768 ? 33.333 : 100; // 3 cards on desktop, 1 on mobile
+    const offset = -(currentTestimonialSlide * slideWidth);
+    carousel.style.transform = `translateX(${offset}%)`;
+    
+    // Update dots based on actual position (mod 6 for circular behavior)
+    const dotIndex = currentTestimonialSlide % 6;
+    dots.forEach((dot, index) => {
+        if (index === dotIndex) {
+            dot.classList.remove('bg-gray-300');
+            dot.classList.add('bg-primary');
+        } else {
+            dot.classList.remove('bg-primary');
+            dot.classList.add('bg-gray-300');
+        }
+    });
+}
+
+function nextSlide() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    
+    currentTestimonialSlide++;
+    updateCarousel();
+    
+    // Check if we need to reset position (after transition)
+    setTimeout(() => {
+        // If we've gone through the original set, reset without animation
+        if (currentTestimonialSlide >= 6) {
+            currentTestimonialSlide = 0; // Reset to start
+            updateCarousel(true); // Reset without animation
+        }
+        isTransitioning = false;
+    }, 500);
+}
+
+function prevSlide() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    
+    // If we're at the start, go to the cloned set
+    if (currentTestimonialSlide === 0) {
+        currentTestimonialSlide = 6; // Jump to cloned set
+        updateCarousel(true); // Set position without animation
+        
+        setTimeout(() => {
+            currentTestimonialSlide = 5;
+            updateCarousel(); // Animate to previous position
+        }, 50);
+    } else {
+        currentTestimonialSlide--;
+        updateCarousel();
+    }
+    
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 500);
+}
+
+function goToSlide(slideIndex) {
+    currentTestimonialSlide = slideIndex;
+    updateCarousel();
+}
+
+// Initialize carousel on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCarousel();
+    updateCarousel(true); // Set initial position without animation
+});
+
+// Event listeners
+document.getElementById('next-testimonial').addEventListener('click', nextSlide);
+document.getElementById('prev-testimonial').addEventListener('click', prevSlide);
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => goToSlide(index));
+});
+
+// Auto-play carousel
+setInterval(nextSlide, 5000);
+
+// Handle window resize
+window.addEventListener('resize', updateCarousel);
 
 // FAQ Toggle Function
 function toggleFAQ(button) {
@@ -199,6 +387,12 @@ function toggleFAQ(button) {
     const icon = button.querySelector('i');
     const allFAQs = document.querySelectorAll('.faq-content');
     const allIcons = document.querySelectorAll('.faq-toggle i');
+    
+    // Add click animation
+    button.style.transform = 'translateX(2px) scale(0.98)';
+    setTimeout(() => {
+        button.style.transform = '';
+    }, 150);
     
     // Close all other FAQs first
     allFAQs.forEach((faq, index) => {
