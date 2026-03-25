@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Professional Notary Public Services - Trusted & Certified</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -108,6 +108,81 @@
             scroll-behavior: smooth;
         }
         
+        /* Prevent horizontal overflow */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        /* Fix for mobile overflow issues */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Ensure all sections stay within viewport */
+        section {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        /* Fix for transform causing overflow */
+        .animate-on-scroll,
+        .faq-left-section,
+        .faq-right-section {
+            will-change: transform, opacity;
+        }
+        
+        /* Force scrollbar to prevent layout shift */
+        html {
+            overflow-y: scroll;
+        }
+        
+        /* Fix for iOS and mobile browsers */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                position: relative;
+                width: 100%;
+                overflow-x: hidden;
+            }
+        }
+        
+        /* Ensure images don't cause overflow */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Fix testimonial carousel overflow */
+        #testimonial-carousel {
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        #testimonial-carousel > div {
+            max-width: 100%;
+        }
+        
+        /* Remove any horizontal scroll from all elements */
+        * {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        *::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        
+        /* Hero buttons - fit to content on mobile */
+        @media (max-width: 640px) {
+            .hero-button {
+                width: auto !important;
+                min-width: fit-content;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+        }
+        
         /* Hero slide animations */
         .hero-slide img {
             animation: zoomAnimation 8s ease-in-out infinite;
@@ -193,17 +268,15 @@
 <body class="bg-white">
     <!-- Sticky Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div class="w-full px-12 py-4 max-w-7xl mx-auto">
-            <div class="flex items-center justify-center space-x-[200px]">
+        <div class="w-full px-4 md:px-8 lg:px-12 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center justify-between md:justify-center md:space-x-8 lg:space-x-[100px] xl:space-x-[200px]">
                 <!-- Logo -->
-                <div class="flex items-center ">
-                    
-                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-12 w-auto md:h-16">
-                    
+                <div class="flex items-center">
+                    <img src="assets/images/logo.jpg" alt="Notary Public" class="h-10 md:h-12 w-auto">
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6 mr-[100px]">
+                <div class="hidden md:flex items-center space-x-6 lg:mr-8 xl:mr-[100px]">
                     <a href="#home" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">Home</a>
                     <a href="#about" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">About</a>
                     <a href="#services" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">Services</a>
@@ -228,40 +301,40 @@
                     <a href="#contact" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">Contact</a>
                 </div>
                 
-                <!-- Email Button -->
-                <div class="hidden md:flex">
+                <!-- Desktop Email Button -->
+                <div class="hidden md:block">
                     <button class="bg-primary text-white px-4 py-2 md:px-6 rounded-full hover:bg-secondary transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
                         Email Us
                     </button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
-                    <i class="fas fa-bars text-xl"></i>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 p-2">
+                    <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
             
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <a href="#home" class="block py-2 text-gray-700 hover:text-primary">Home</a>
-                <a href="#about" class="block py-2 text-gray-700 hover:text-primary">About</a>
-                <a href="#services" class="block py-2 text-gray-700 hover:text-primary">Services</a>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 px-4 bg-white rounded-lg shadow-lg">
+                <a href="#home" class="block py-2 text-black hover:text-primary">Home</a>
+                <a href="#about" class="block py-2 text-black hover:text-primary">About</a>
+                <a href="#services" class="block py-2 text-black hover:text-primary">Services</a>
                 <div class="py-2">
-                    <button class="text-gray-700 hover:text-primary flex items-center" onclick="toggleMobileServiceArea()">
+                    <button class="text-black hover:text-primary flex items-center" onclick="toggleMobileServiceArea()">
                         Service Area
                         <i class="fas fa-chevron-down ml-1 text-xs"></i>
                     </button>
                     <div id="mobile-service-area" class="hidden mt-2 ml-4 space-y-2">
-                        <a href="#surrey" class="block py-1 text-sm text-gray-600 hover:text-primary">Surrey</a>
-                        <a href="#vancouver" class="block py-1 text-sm text-gray-600 hover:text-primary">Vancouver</a>
-                        <a href="#burnaby" class="block py-1 text-sm text-gray-600 hover:text-primary">Burnaby</a>
-                        <a href="#richmond" class="block py-1 text-sm text-gray-600 hover:text-primary">Richmond</a>
-                        <a href="#new-westminster" class="block py-1 text-sm text-gray-600 hover:text-primary">New Westminster</a>
-                        <a href="#coquitlam" class="block py-1 text-sm text-gray-600 hover:text-primary">Coquitlam</a>
+                        <a href="#surrey" class="block py-1 text-sm text-black hover:text-primary">Surrey</a>
+                        <a href="#vancouver" class="block py-1 text-sm text-black hover:text-primary">Vancouver</a>
+                        <a href="#burnaby" class="block py-1 text-sm text-black hover:text-primary">Burnaby</a>
+                        <a href="#richmond" class="block py-1 text-sm text-black hover:text-primary">Richmond</a>
+                        <a href="#new-westminster" class="block py-1 text-sm text-black hover:text-primary">New Westminster</a>
+                        <a href="#coquitlam" class="block py-1 text-sm text-black hover:text-primary">Coquitlam</a>
                     </div>
                 </div>
-                <a href="#contact" class="block py-2 text-gray-700 hover:text-primary">Blogs</a>
-                <a href="#contact" class="block py-2 text-gray-700 hover:text-primary">Contact</a>
+                <a href="#contact" class="block py-2 text-black hover:text-primary">Blogs</a>
+                <a href="#contact" class="block py-2 text-black hover:text-primary">Contact</a>
                 <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all duration-300">
                     Email Us
                 </button>
@@ -316,11 +389,11 @@
                         </p>
                         <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s">
                             <button onclick="document.getElementById('contact').scrollIntoView()" 
-                                    class="hero-button bg-primary text-white px-1 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
+                                    class="hero-button bg-primary text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
                                 Get Started Today
                             </button>
                             <button onclick="document.getElementById('services').scrollIntoView()" 
-                                    class="hero-button border-2 border-white text-white px-1 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
+                                    class="hero-button border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
                                 Learn More
                             </button>
                         </div>
@@ -336,11 +409,11 @@
                         </p>
                         <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s">
                             <button onclick="document.getElementById('contact').scrollIntoView()" 
-                                    class="hero-button bg-primary text-white px-1 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
+                                    class="hero-button bg-primary text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
                                 Book Consultation
                             </button>
                             <button onclick="document.getElementById('services').scrollIntoView()" 
-                                    class="hero-button border-2 border-white text-white px-1 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
+                                    class="hero-button border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
                                 View Services
                             </button>
                         </div>
@@ -356,11 +429,11 @@
                         </p>
                         <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s">
                             <button onclick="document.getElementById('contact').scrollIntoView()" 
-                                    class="hero-button bg-primary text-white px-1 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
+                                    class="hero-button bg-primary text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
                                 Schedule Appointment
                             </button>
                             <button onclick="document.getElementById('services').scrollIntoView()" 
-                                    class="hero-button border-2 border-white text-white px-1 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
+                                    class="hero-button border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
                                 Learn More
                             </button>
                         </div>
@@ -426,7 +499,7 @@
     <!-- Stats Section -->
     <section id="stats" class="py-10 bg-primary">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center px-2 md:px-0">
                 <!-- Stat 1 -->
                 <div class="stat-item">
                     <div class="text-2xl md:text-3xl font-bold text-white mb-1">
@@ -463,7 +536,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 px-16 bg-[#F5F5F5]">
+    <section id="services" class="py-16 px-4 md:px-8 lg:px-16 bg-[#F5F5F5]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
@@ -605,23 +678,23 @@
  
 
     <!-- Why Choose Us Section -->
-    <section id="why-choose" class="py-16 px-16 bg-white">
+    <section id="why-choose" class="py-16 px-4 md:px-8 lg:px-16 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Left Side Content -->
-                <div class="why-choose-left w-4/5">
+                <div class="why-choose-left w-full md:w-4/5">
                     <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 typing-animation">Why Choose Us</h2>
                     <p class="text-lg text-gray-600 mb-8">
                         We stand out through our commitment to excellence and client satisfaction
                     </p>
                     <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                          alt="Why Choose Us" 
-                         class="rounded-lg shadow-xl w-4/2">
+                         class="rounded-lg shadow-xl w-full">
                 </div>
                 
                 <!-- Right Side Content - 2x2 Grid -->
                 <div class="why-choose-right">
-                    <div class="grid grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <!-- Item 1 -->
                        <div 
   class="group text-center transition-all duration-300 transform hover:-translate-y-2"
@@ -725,7 +798,7 @@
                 <p class="text-lg text-gray-600">What our clients say about our services</p>
             </div>
             
-            <div class="relative max-w-6xl mx-auto">
+            <div class="relative max-w-6xl mx-auto overflow-hidden">
                 <div class="overflow-hidden">
                     <div id="testimonial-carousel" class="flex transition-transform duration-500 ease-in-out">
                         <!-- Testimonial Card 1 -->
@@ -881,11 +954,11 @@
                 </div>
                 
                 <!-- Carousel Controls -->
-                <button id="prev-testimonial" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-secondary transition-colors shadow-lg z-10">
-                    <i class="fas fa-chevron-left"></i>
+                <button id="prev-testimonial" class="absolute -left-2 md:left-0 top-1/2 transform -translate-y-1/2 bg-primary text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-secondary transition-colors shadow-lg z-10">
+                    <i class="fas fa-chevron-left text-sm md:text-base"></i>
                 </button>
-                <button id="next-testimonial" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-secondary transition-colors shadow-lg z-10">
-                    <i class="fas fa-chevron-right"></i>
+                <button id="next-testimonial" class="absolute -right-2 md:right-0 top-1/2 transform -translate-y-1/2 bg-primary text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-secondary transition-colors shadow-lg z-10">
+                    <i class="fas fa-chevron-right text-sm md:text-base"></i>
                 </button>
                 
                 <!-- Carousel Indicators -->
@@ -902,7 +975,7 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="py-[100px] relative overflow-hidden">
+    <section class="py-16 md:py-24 lg:py-[100px] relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/CTA-img.jpg" 
@@ -940,7 +1013,7 @@
                     </p>
                     <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                          alt="FAQs" 
-                         class="rounded-lg shadow-xl w-[400px]">
+                         class="rounded-lg shadow-xl w-full max-w-[400px]">
                 </div>
                 
                 <!-- Right Side FAQs -->
@@ -1003,7 +1076,7 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-[100px] w-auto">
+                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-16 md:h-[100px] w-auto">
                         
                     </div>
                     <p class="text-gray-400">

@@ -1,11 +1,44 @@
 // Hero carousel functionality
 let currentSlide = 0;
-const slides = document.querySelectorAll('.hero-slide');
-const indicators = document.querySelectorAll('.hero-indicator');
-const contentItems = document.querySelectorAll('.hero-content-item');
-const totalSlides = slides.length;
+let slides, indicators, contentItems, totalSlides;
+let carouselInterval;
+
+function initCarousel() {
+    slides = document.querySelectorAll('.hero-slide');
+    indicators = document.querySelectorAll('.hero-indicator');
+    contentItems = document.querySelectorAll('.hero-content-item');
+    totalSlides = slides.length;
+    
+    console.log('Carousel initialized with', totalSlides, 'slides');
+    
+    // Show first slide immediately
+    showSlide(0);
+    
+    // Auto-advance slides every 4 seconds
+    startCarousel();
+    
+    // Manual slide control via indicators
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showSlide(index);
+            resetCarouselTimer();
+        });
+    });
+}
+
+function startCarousel() {
+    carouselInterval = setInterval(nextSlide, 4000);
+    console.log('Carousel auto-started');
+}
+
+function resetCarouselTimer() {
+    clearInterval(carouselInterval);
+    carouselInterval = setInterval(nextSlide, 4000);
+}
 
 function showSlide(index) {
+    console.log('Showing slide:', index);
+    
     // Hide all slides and content
     slides.forEach(slide => slide.classList.add('opacity-0'));
     indicators.forEach(indicator => {
@@ -31,18 +64,9 @@ function showSlide(index) {
 
 function nextSlide() {
     const nextIndex = (currentSlide + 1) % totalSlides;
+    console.log('Auto-advancing to slide:', nextIndex);
     showSlide(nextIndex);
 }
-
-// Auto-advance slides every 4 seconds
-setInterval(nextSlide, 4000);
-
-// Manual slide control via indicators
-indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-        showSlide(index);
-    });
-});
 
 // Navbar scroll effect
 window.addEventListener('scroll', function() {
@@ -79,6 +103,9 @@ window.addEventListener('scroll', function() {
 
 // Set initial active state for home page
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize hero carousel
+    initCarousel();
+    
     const homeLink = document.querySelector('a[href="#home"]');
     if (homeLink) {
         homeLink.classList.add('nav-item-active');
@@ -365,6 +392,16 @@ function goToSlide(slideIndex) {
 document.addEventListener('DOMContentLoaded', function() {
     initializeCarousel();
     updateCarousel(true); // Set initial position without animation
+    
+    // Force recalculation after a short delay to fix mobile overflow issue
+    setTimeout(() => {
+        updateCarousel(true);
+    }, 100);
+    
+    // Force recalculation after images load
+    window.addEventListener('load', () => {
+        updateCarousel(true);
+    });
 });
 
 // Event listeners
@@ -575,3 +612,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Fix for mobile horizontal overflow issue
+function fixMobileOverflow() {
+    // Force document width to viewport width
+    document.documentElement.style.width = window.innerWidth + 'px';
+    document.body.style.width = window.innerWidth + 'px';
+    
+    // Find any elements causing overflow and fix them
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.right > window.innerWidth) {
+            el.style.maxWidth = '100vw';
+            el.style.overflowX = 'hidden';
+        }
+    });
+}
+
+// Run on load and resize
+window.addEventListener('load', fixMobileOverflow);
+window.addEventListener('resize', fixMobileOverflow);
+
+// Run multiple times on initial load to catch any late-loading elements
+setTimeout(fixMobileOverflow, 0);
+setTimeout(fixMobileOverflow, 100);
+setTimeout(fixMobileOverflow, 500);
+setTimeout(fixMobileOverflow, 1000);
