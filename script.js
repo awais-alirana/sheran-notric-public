@@ -647,4 +647,25 @@ window.addEventListener('resize', fixMobileOverflow);
 setTimeout(fixMobileOverflow, 0);
 setTimeout(fixMobileOverflow, 100);
 setTimeout(fixMobileOverflow, 500);
+
+// Mobile menu toggle with hamburger animation
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+        // Toggle active class for hamburger animation
+        this.classList.toggle('active');
+        // Toggle mobile menu visibility
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.classList.remove('active');
+        });
+    });
+}
 setTimeout(fixMobileOverflow, 1000);
