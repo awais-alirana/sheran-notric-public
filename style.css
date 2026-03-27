@@ -1,4 +1,15 @@
-/* Custom animations */
+/* Hero zoom animation */
+@keyframes zoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.animate-zoom {
+    animation: zoom 20s ease-in-out infinite;
+}
+
+/* Custom fade in up animation */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -10,54 +21,27 @@
     }
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes zoomAnimation {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-@keyframes contentFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out;
+    animation: fadeInUp 0.8s ease-out forwards;
 }
 
-.animate-slide-in-left {
-    animation: slideInLeft 0.8s ease-out;
+/* Services scroll animations */
+.service-animate-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.service-animate-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+}
+
+.service-animate-left.animate,
+.service-animate-right.animate {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .animate-on-scroll {
@@ -76,9 +60,9 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Selection color */
+/* Selection color - Navy Blue */
 ::selection {
-    background-color: #B03030;
+    background-color: #1e3a5f;
     color: white;
 }
 
@@ -106,7 +90,8 @@ html {
     animation: contentFadeIn 1s ease-out;
 }
 
-/* Navbar transparency effect */
+/* Navbar transparency effect - DISABLED to maintain white background */
+/*
 #navbar {
     background-color: transparent;
     transition: all 0.3s ease;
@@ -126,6 +111,7 @@ html {
 #navbar:not(.scrolled) .text-gray-700 {
     color: white !important;
 }
+*/
 
 /* Service cards hover effect */
 .service-card {
@@ -151,7 +137,7 @@ html {
 
 /* Form input focus effects */
 input:focus, textarea:focus, select:focus {
-    box-shadow: 0 0 0 3px rgba(139, 30, 30, 0.1);
+    box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
 }
 
 /* Loading animation */
@@ -160,7 +146,7 @@ input:focus, textarea:focus, select:focus {
     width: 20px;
     height: 20px;
     border: 3px solid #f3f3f3;
-    border-top: 3px solid #8B1E1E;
+    border-top: 3px solid #1e3a5f;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -250,20 +236,20 @@ input:focus, textarea:focus, select:focus {
     }
 }
 
-/* Pulse animation for call-to-action */
+/* Pulse animation for call-to-action - Navy Blue */
 .pulse-cta {
     animation: pulse-cta 2s infinite;
 }
 
 @keyframes pulse-cta {
     0% {
-        box-shadow: 0 0 0 0 rgba(176, 48, 48, 0.7);
+        box-shadow: 0 0 0 0 rgba(30, 58, 95, 0.7);
     }
     70% {
-        box-shadow: 0 0 0 10px rgba(176, 48, 48, 0);
+        box-shadow: 0 0 0 10px rgba(30, 58, 95, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(176, 48, 48, 0);
+        box-shadow: 0 0 0 0 rgba(30, 58, 95, 0);
     }
 }
 
@@ -278,22 +264,22 @@ input:focus, textarea:focus, select:focus {
     }
 }
 
+/* Hero zoom animation */
+@keyframes zoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.animate-zoom {
+    animation: zoom 20s ease-in-out infinite;
+}
+
 /* About section animations */
 @keyframes slideInLeft {
     from {
         opacity: 0;
         transform: translateX(-100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(100px);
     }
     to {
         opacity: 1;
@@ -329,7 +315,7 @@ input:focus, textarea:focus, select:focus {
     white-space: nowrap;
     display: inline-block;
     max-width: fit-content;
-    border-right: 3px solid #8B1E1E;
+    border-right: 3px solid #1e3a5f;
     animation: blink-caret 0.75s step-end infinite;
 }
 
@@ -355,7 +341,7 @@ input:focus, textarea:focus, select:focus {
 
 @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: #8B1E1E }
+    50% { border-color: #1e3a5f }
 }
 
 /* Why Choose Us section animations */
@@ -424,7 +410,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .faq-toggle:hover h3 {
-    color: #B03030;
+    color: #1e3a5f;
 }
 
 /* Services section animations */

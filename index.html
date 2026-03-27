@@ -12,12 +12,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#8B1E1E',
-                        secondary: '#B03030',
-                        dark: '#1A1A1A',
+                        primary: '#1e3a5f',
+                        secondary: '#2c5282',
+                        dark: '#0f172a',
                         white: '#FFFFFF',
                         'light-gray': '#F5F5F5',
-                        accent: '#C0C0C0'
+                        accent: '#3b82f6'
                     }
                 }
             }
@@ -221,27 +221,6 @@
             }
         }
         
-        /* Navbar transparency effect */
-        #navbar {
-            background-color: transparent;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(0px);
-        }
-        
-        #navbar.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        
-        #navbar.scrolled .text-gray-700 {
-            color: #374151 !important;
-        }
-        
-        #navbar:not(.scrolled) .text-gray-700 {
-            color: white !important;
-        }
-        
         /* Active/Selected menu item color */
         .nav-link {
             position: relative;
@@ -266,180 +245,115 @@
     </style>
 </head>
 <body class="bg-white">
-    <!-- Sticky Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div class="w-full px-4 md:px-8 lg:px-12 py-4 max-w-7xl mx-auto">
-            <div class="flex items-center justify-between md:justify-center md:space-x-8 lg:space-x-[100px] xl:space-x-[200px]">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <img src="assets/images/logo.jpg" alt="Notary Public" class="h-10 md:h-12 w-auto">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <!-- Top Contact Bar inside Navbar -->
+        <div class="bg-primary text-white py-2">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <div class="flex flex-col md:flex-row items-center justify-between text-sm">
+                    <div class="flex items-center space-x-2 mb-1 md:mb-0">
+                        <i class="fas fa-user"></i>
+                        <span class="font-medium">Sheran Thind Notary Public</span>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <a href="mailto:thindnotary@gmail.com" class="flex items-center space-x-2 hover:text-accent transition-colors">
+                            <i class="fas fa-envelope"></i>
+                            <span>thindnotary@gmail.com</span>
+                        </a>
+                        <a href="tel:+16045009300" class="flex items-center space-x-2 hover:text-accent transition-colors">
+                            <i class="fas fa-phone"></i>
+                            <span>1 604-500-9300</span>
+                        </a>
+                    </div>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Main Navbar -->
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-3">
+                    <img src="assets/images/logo.jpg" alt="Notary Public" class="h-14 md:h-16 w-auto">
+                    <span class="hidden md:block text-lg font-bold text-gray-800">Sheran Thind Notary Public</span>
+                </a>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6 lg:mr-8 xl:mr-[100px]">
-                    <a href="#home" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">Home</a>
-                    <a href="#about" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">About</a>
-                    <a href="#services" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">Services</a>
-                    
-                    <!-- Service Area Dropdown -->
-                    <div class="relative group hidden lg:block">
-                        <button class="text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300 flex items-center">
-                            Service Area
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </button>
-                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                            <a href="#surrey" class="block px-4 py-2 text-black hover:bg-[#8B1E1E] hover:text-white transition-colors">Surrey</a>
-                            <a href="#vancouver" class="block px-4 py-2 text-black hover:bg-[#8B1E1E] hover:text-white transition-colors">Vancouver</a>
-                            <a href="#burnaby" class="block px-4 py-2 text-black hover:bg-[#8B1E1E] hover:text-white transition-colors">Burnaby</a>
-                            <a href="#richmond" class="block px-4 py-2 text-black hover:bg-[#8B1E1E] hover:text-white transition-colors">Richmond</a>
-                            <a href="#new-westminster" class="block px-4 py-2 text-black hover:bg-[#8B1E1E] hover:text-white transition-colors">New Westminster</a>
-                            <a href="#coquitlam" class="block px-4 py-2 text-black hover:bg-[#8B1E1E] hover:text-white transition-colors">Coquitlam</a>
-                        </div>
-                    </div>
-                    
-                    <a href="#contact" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">Blogs</a>
-                    <a href="#contact" class="nav-link text-base md:text-lg text-gray-700 hover:text-[#8B1E1E] transition-colors duration-300">Contact</a>
-                </div>
-                
-                <!-- Desktop Email Button -->
-                <div class="hidden md:block">
-                    <button class="bg-primary text-white px-4 py-2 md:px-6 rounded-full hover:bg-secondary transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
-                        Email Us
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-800 hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="#about" class="text-gray-800 hover:text-primary transition-colors font-medium">About</a>
+                    <a href="#services" class="text-gray-800 hover:text-primary transition-colors font-medium">Services</a>
+                    <a href="#contact" class="text-gray-800 hover:text-primary transition-colors font-medium">Contact</a>
+                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all">
+                        Book an Appointment
                     </button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-700 p-2">
+                <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
             
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 px-4 bg-white rounded-lg shadow-lg">
-                <a href="#home" class="block py-2 text-black hover:text-primary">Home</a>
-                <a href="#about" class="block py-2 text-black hover:text-primary">About</a>
-                <a href="#services" class="block py-2 text-black hover:text-primary">Services</a>
-                <div class="py-2">
-                    <button class="text-black hover:text-primary flex items-center" onclick="toggleMobileServiceArea()">
-                        Service Area
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-                    <div id="mobile-service-area" class="hidden mt-2 ml-4 space-y-2">
-                        <a href="#surrey" class="block py-1 text-sm text-black hover:text-primary">Surrey</a>
-                        <a href="#vancouver" class="block py-1 text-sm text-black hover:text-primary">Vancouver</a>
-                        <a href="#burnaby" class="block py-1 text-sm text-black hover:text-primary">Burnaby</a>
-                        <a href="#richmond" class="block py-1 text-sm text-black hover:text-primary">Richmond</a>
-                        <a href="#new-westminster" class="block py-1 text-sm text-black hover:text-primary">New Westminster</a>
-                        <a href="#coquitlam" class="block py-1 text-sm text-black hover:text-primary">Coquitlam</a>
-                    </div>
-                </div>
-                <a href="#contact" class="block py-2 text-black hover:text-primary">Blogs</a>
-                <a href="#contact" class="block py-2 text-black hover:text-primary">Contact</a>
-                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all duration-300">
-                    Email Us
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <a href="#home" class="block py-2 text-gray-800 hover:text-primary">Home</a>
+                <a href="#about" class="block py-2 text-gray-800 hover:text-primary">About</a>
+                <a href="#services" class="block py-2 text-gray-800 hover:text-primary">Services</a>
+                <a href="#contact" class="block py-2 text-gray-800 hover:text-primary">Contact</a>
+                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all">
+                    Book an Appointment
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
-        <!-- Background Image Carousel -->
-        <div class="absolute inset-0">
-            <div id="hero-slider" class="relative w-full h-full">
-                <div class="hero-slide absolute inset-0">
-                    <img src="assets/images/hero-img.jpg" 
-                         alt="Notary Services Background" 
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img src="assets/images/hero-img-2.jpg" 
-                         alt="Notary Services Background 2" 
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img src="assets/images/hero-img-3.jpg" 
-                         alt="Notary Services Background 3" 
-                         class="w-full h-full object-cover">
-                </div>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
+    <section id="home" class="relative h-[100vh] flex items-center justify-center overflow-hidden pt-32">
+        <!-- Background Image with Zoom Animation -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/hero-6.jpg" 
+                 alt="Notary Services" 
+                 class="w-full h-full object-cover animate-zoom">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
         </div>
         
-        <!-- Carousel Indicators -->
-        <div class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-            <div class="flex space-x-2">
-                <button class="hero-indicator w-3 h-3 bg-white rounded-full transition-all duration-300" data-slide="0"></button>
-                <button class="hero-indicator w-3 h-3 bg-white/50 rounded-full transition-all duration-300" data-slide="1"></button>
-                <button class="hero-indicator w-3 h-3 bg-white/50 rounded-full transition-all duration-300" data-slide="2"></button>
-            </div>
+        <!-- Animated Shapes -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
         </div>
         
         <!-- Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
-            <div class="max-w-4xl mx-auto">
-                <div id="hero-content">
-                    <!-- Slide 1 Content -->
-                    <div class="hero-content-item">
-                        <h1 class="text-2xl md:text-4xl lg:text-6xl font-bold text-white mb-4 md:mb-6 animate-fade-in-up">
-                            Professional Notary Public Services
-                        </h1>
-                        <p class="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s">
-                            Fast, Reliable & Certified Document Notarization
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s">
-                            <button onclick="document.getElementById('contact').scrollIntoView()" 
-                                    class="hero-button bg-primary text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
-                                Get Started Today
-                            </button>
-                            <button onclick="document.getElementById('services').scrollIntoView()" 
-                                    class="hero-button border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
-                                Learn More
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 2 Content -->
-                    <div class="hero-content-item hidden">
-                        <h1 class="text-2xl md:text-4xl lg:text-6xl font-bold text-white mb-4 md:mb-6 animate-fade-in-up">
-                            Real Estate Conveyancing Experts
-                        </h1>
-                        <p class="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s">
-                            Smooth Property Transactions with Professional Notary Services
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s">
-                            <button onclick="document.getElementById('contact').scrollIntoView()" 
-                                    class="hero-button bg-primary text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
-                                Book Consultation
-                            </button>
-                            <button onclick="document.getElementById('services').scrollIntoView()" 
-                                    class="hero-button border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
-                                View Services
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 3 Content -->
-                    <div class="hero-content-item hidden">
-                        <h1 class="text-2xl md:text-4xl lg:text-6xl font-bold text-white mb-4 md:mb-6 animate-fade-in-up">
-                            Wills & Estate Planning
-                        </h1>
-                        <p class="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s">
-                            Protect Your Legacy with Expert Legal Documentation
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s">
-                            <button onclick="document.getElementById('contact').scrollIntoView()" 
-                                    class="hero-button bg-primary text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
-                                Schedule Appointment
-                            </button>
-                            <button onclick="document.getElementById('services').scrollIntoView()" 
-                                    class="hero-button border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-sm md:text-base">
-                                Learn More
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <div class="animate-fade-in-up">
+                <span class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6 border border-white/20">
+                    <i class="fas fa-shield-alt mr-2"></i>Trusted & Certified
+                </span>
             </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s">
+                Professional <span class="text-primary">Notary</span> Services
+            </h1>
+            
+            <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+                Fast, reliable & certified document notarization for all your legal needs in British Columbia
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.6s">
+                <a href="#contact" class="group bg-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-secondary transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <span>Free consultations — No Cost!</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+            
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <a href="#about" class="text-white/80 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
         </div>
     </section>
 
@@ -448,342 +362,147 @@
     <section id="about" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="about-animate-left">
-                    <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Professional Notary" 
-                         class="rounded-lg shadow-xl">
-                </div>
-                <div class="about-animate-right">
-                    
-                    <div class="about-mini-title inline-flex items-center mb-2">
-                    
-                    <h3 class="text-xs border-2 border-[#8B1E1E] px-3 py-1 rounded font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
-                        <i class="fas fa-star text-primary mr-2"></i>
-                        WHO ARE WE
-                    </h3>
-                </div>
+                <!-- Content on Left -->
+                <div class="about-animate-right order-2 md:order-1">
+                    <div class="inline-flex items-center mb-4">
+                        <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+                            <i class="fas fa-star mr-2"></i>Who We Are
+                        </span>
+                    </div>
                     <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">About Our Notary Services</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        We are a trusted notary public firm providing professional and reliable services to clients throughout the region. Our team brings years of experience in handling all types of legal documentation with precision and care.
+                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+                        We're here to provide you with a seamless and efficient notarization experience, tailored to your needs.
                     </p>
-                    <p class="text-lg text-gray-600 mb-6">
-                        Our commitment to excellence ensures that every document is processed accurately and efficiently, giving you peace of mind for all your important legal matters.
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        At Sharan Thind Notary Public, we are your trusted partner for all your notarial needs in Surrey, BC. Let us help you navigate the legal landscape with confidence and clarity.
                     </p>
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="flex items-center space-x-3">
+                    
+                    <!-- Feature List -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
                             <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700">Licensed & Insured</span>
+                            <span class="text-gray-700 font-medium">Licensed & Insured</span>
                         </div>
-                        <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
                             <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700">Years of Experience</span>
+                            <span class="text-gray-700 font-medium">Years of Experience</span>
                         </div>
-                        <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
                             <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700">Client Focused</span>
+                            <span class="text-gray-700 font-medium">Client Focused</span>
                         </div>
-                        <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
                             <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700">Competitive Rates</span>
+                            <span class="text-gray-700 font-medium">Competitive Rates</span>
                         </div>
                     </div>
-                    <button onclick="document.getElementById('contact').scrollIntoView()" 
-                            class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105">
-                        Contact Us Today
+                    
+                    <button onclick="window.location.href='about.html'" 
+                            class="bg-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </div>
+                
+                <!-- Image on Right -->
+                <div class="about-animate-left order-1 md:order-2">
+                    <div class="relative">
+                        <img src="/assets/images/about-img.jpg" 
+                             alt="Professional Notary" 
+                             class="rounded-lg shadow-2xl w-full">
+                        <!-- Decorative Element -->
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-lg -z-10"></div>
+                        <div class="absolute -top-4 -left-4 w-16 h-16 bg-secondary/20 rounded-lg -z-10"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section id="stats" class="py-10 bg-primary">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center px-2 md:px-0">
-                <!-- Stat 1 -->
-                <div class="stat-item">
-                    <div class="text-2xl md:text-3xl font-bold text-white mb-1">
-                        <span class="counter" data-target="1500">0</span>+
-                    </div>
-                    <p class="text-white/80 text-sm">Documents Notarized</p>
-                </div>
-                
-                <!-- Stat 2 -->
-                <div class="stat-item">
-                    <div class="text-2xl md:text-3xl font-bold text-white mb-1">
-                        <span class="counter" data-target="850">0</span>+
-                    </div>
-                    <p class="text-white/80 text-sm">Happy Clients</p>
-                </div>
-                
-                <!-- Stat 3 -->
-                <div class="stat-item">
-                    <div class="text-2xl md:text-3xl font-bold text-white mb-1">
-                        <span class="counter" data-target="12">0</span>+
-                    </div>
-                    <p class="text-white/80 text-sm">Years Experience</p>
-                </div>
-                
-                <!-- Stat 4 -->
-                <div class="stat-item">
-                    <div class="text-2xl md:text-3xl font-bold text-white mb-1">
-                        <span class="counter" data-target="99">0</span>%
-                    </div>
-                    <p class="text-white/80 text-sm">Client Satisfaction</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 px-4 md:px-8 lg:px-16 bg-[#F5F5F5]">
+    <section id="services" class="py-16 bg-[#F5F5F5]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12 animate-on-scroll">
+                <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4 inline-block">
+                    <i class="fas fa-briefcase mr-2"></i>What We Offer
+                </span>
                 <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     Comprehensive notary services tailored to meet your legal documentation needs
                 </p>
             </div>
             
+            <!-- Services Grid - 3 Columns -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-              <div 
-  class="service-card-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2"
->
-
-    <!-- Background Fill Animation -->
-    <div class="absolute bottom-0 left-0 w-full h-0 bg-[#8B1E1E] transition-all duration-500 ease-in-out group-hover:h-full"></div>
-
-    <!-- Content -->
-    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
-
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
-            <i class="fas fa-home text-white text-2xl group-hover:text-[#8B1E1E]"></i>
-        </div>
-
-        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white">
-            Real Estate Conveyancing
-        </h3>
-
-        <p class="text-gray-600 group-hover:text-gray-200">
-            Professional handling of property transactions, ensuring smooth and secure transfers of real estate.
-        </p>
-
-    </div>
-                </div>
-                
-              <!-- Service Card 2 -->
-<div class="service-card-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
-
-    <div class="absolute bottom-0 left-0 w-full h-0 bg-[#8B1E1E] transition-all duration-500 ease-in-out group-hover:h-full"></div>
-
-    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
-            <i class="fas fa-file-contract text-white text-2xl group-hover:text-[#8B1E1E]"></i>
-        </div>
-
-        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white">
-            Wills & Estate Planning
-        </h3>
-
-        <p class="text-gray-600 group-hover:text-gray-200">
-            Expert preparation of wills and estate planning documents to protect your legacy and loved ones.
-        </p>
-    </div>
-</div>
-
-<!-- Service Card 3 -->
-<div class="service-card-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
-
-    <div class="absolute bottom-0 left-0 w-full h-0 bg-[#8B1E1E] transition-all duration-500 ease-in-out group-hover:h-full"></div>
-
-    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
-            <i class="fas fa-user-tie text-white text-2xl group-hover:text-[#8B1E1E]"></i>
-        </div>
-
-        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white">
-            Powers of Attorney
-        </h3>
-
-        <p class="text-gray-600 group-hover:text-gray-200">
-            Legal documentation for powers of attorney and representation agreements with proper notarization.
-        </p>
-    </div>
-</div>
-
-<!-- Service Card 4 -->
-<div class="service-card-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
-
-    <div class="absolute bottom-0 left-0 w-full h-0 bg-[#8B1E1E] transition-all duration-500 ease-in-out group-hover:h-full"></div>
-
-    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
-            <i class="fas fa-stamp text-white text-2xl group-hover:text-[#8B1E1E]"></i>
-        </div>
-
-        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white">
-            Document Notarization
-        </h3>
-
-        <p class="text-gray-600 group-hover:text-gray-200">
-            Professional notarization of documents and certified true copies for legal validity.
-        </p>
-    </div>
-</div>
-
-<!-- Service Card 5 -->
-<div class="service-card-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
-
-    <div class="absolute bottom-0 left-0 w-full h-0 bg-[#8B1E1E] transition-all duration-500 ease-in-out group-hover:h-full"></div>
-
-    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
-            <i class="fas fa-plane text-white text-2xl group-hover:text-[#8B1E1E]"></i>
-        </div>
-
-        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white">
-            Travel Consent Letters
-        </h3>
-
-        <p class="text-gray-600 group-hover:text-gray-200">
-            Notarized consent letters for children traveling internationally with proper documentation.
-        </p>
-    </div>
-</div>
-
-<!-- Service Card 6 -->
-<div class="service-card-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
-
-    <div class="absolute bottom-0 left-0 w-full h-0 bg-[#8B1E1E] transition-all duration-500 ease-in-out group-hover:h-full"></div>
-
-    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
-            <i class="fas fa-file-signature text-white text-2xl group-hover:text-[#8B1E1E]"></i>
-        </div>
-
-        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white">
-            Affidavits & Declarations
-        </h3>
-
-        <p class="text-gray-600 group-hover:text-gray-200">
-            Preparation and notarization of statutory declarations and affidavits for legal purposes.
-        </p>
-    </div>
-</div>
-            </div>
-        </div>
-    </section>
-
- 
-
-    <!-- Why Choose Us Section -->
-    <section id="why-choose" class="py-16 px-4 md:px-8 lg:px-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left Side Content -->
-                <div class="why-choose-left w-full md:w-4/5">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 typing-animation">Why Choose Us</h2>
-                    <p class="text-lg text-gray-600 mb-8">
-                        We stand out through our commitment to excellence and client satisfaction
-                    </p>
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Why Choose Us" 
-                         class="rounded-lg shadow-xl w-full">
-                </div>
-                
-                <!-- Right Side Content - 2x2 Grid -->
-                <div class="why-choose-right">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <!-- Item 1 -->
-                       <div 
-  class="group text-center transition-all duration-300 transform hover:-translate-y-2"
->
-
-    <!-- Icon -->
-    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 
-                transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-
-        <i class="fas fa-shield-alt text-white text-2xl"></i>
-    </div>
-
-    <!-- Title -->
-    <h3 class="text-lg font-semibold text-primary mb-2">
-        Trusted & Secure
-    </h3>
-
-    <!-- Text -->
-    <p class="text-sm text-gray-600">
-        Your documents are handled with utmost security and confidentiality
-    </p>
-
+                <!-- Service Card 1 - Letter of Invitation -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-envelope text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
                         </div>
-                        
-                       <!-- Item 2 -->
-<div class="group text-center transition-all duration-300 transform hover:-translate-y-2">
-
-    <!-- Icon -->
-    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 
-                transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-
-        <i class="fas fa-clock text-white text-2xl"></i>
-    </div>
-
-    <!-- Title -->
-    <h3 class="text-lg font-semibold text-primary mb-2">
-        Fast Service
-    </h3>
-
-    <!-- Text -->
-    <p class="text-sm text-gray-600">
-        Quick turnaround times without compromising on quality
-    </p>
-
-</div>
-
-<!-- Item 3 -->
-<div class="group text-center transition-all duration-300 transform hover:-translate-y-2">
-
-    <!-- Icon -->
-    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 
-                transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-
-        <i class="fas fa-certificate text-white text-2xl"></i>
-    </div>
-
-    <!-- Title -->
-    <h3 class="text-lg font-semibold text-primary mb-2">
-        Certified Professionals
-    </h3>
-
-    <!-- Text -->
-    <p class="text-sm text-gray-600">
-        Fully licensed and experienced notary public professionals
-    </p>
-
-</div>
-
-<!-- Item 4 -->
-<div class="group text-center transition-all duration-300 transform hover:-translate-y-2">
-
-    <!-- Icon -->
-    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 
-                transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-
-        <i class="fas fa-handshake text-white text-2xl"></i>
-    </div>
-
-    <!-- Title -->
-    <h3 class="text-lg font-semibold text-primary mb-2">
-        Personalized Service
-    </h3>
-
-    <!-- Text -->
-    <p class="text-sm text-gray-600">
-        Tailored solutions to meet your specific notary needs
-    </p>
-
-</div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Letter of Invitation</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">When you need a letter of invitation to welcome friends or family from abroad, rely on us for accurate, binding and well-drafted documents.</p>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 - Powers of Attorney -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-file-contract text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Powers of Attorney</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">We help you establish solid powers of attorney, ensuring your interests are represented effectively when you can't be present.</p>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 - Witness of Signature -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-pen text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Witness of Signature</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Our notaries provide reliable witness services, ensuring the authenticity and legality of important signatures.</p>
+                    </div>
+                </div>
+                
+                <!-- Service Card 4 - Statutory Declaration -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-file-alt text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Statutory Declaration</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Count on us for explicit and legally binding statutory declarations, tailored to your specific requirements.</p>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5 - Affidavit -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-file-signature text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Affidavit</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">We assist you in creating affidavits that stand as irrefutable testimony, helping you confidently navigate legal matters.</p>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 - Proof of Identity -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-fingerprint text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Proof of Identity</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Obtain accurate and verified proof of identity documents through our meticulous notarization processes.</p>
                     </div>
                 </div>
             </div>
@@ -1001,72 +720,6 @@
         </div>
     </section>
 
-    <!-- FAQs Section -->
-    <section id="faqs" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left Side Content -->
-                <div class="faq-left-section animate-on-scroll">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Frequently Asked Questions</h2>
-                    <p class="text-lg text-gray-600 mb-8">
-                        Find answers to common questions about our notary services
-                    </p>
-                    <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="FAQs" 
-                         class="rounded-lg shadow-xl w-full max-w-[400px]">
-                </div>
-                
-                <!-- Right Side FAQs -->
-                <div class="faq-right-section animate-on-scroll">
-                    <div class="space-y-4">
-                        <!-- FAQ 1 -->
-                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <button class="w-full text-left flex justify-between items-center faq-toggle" onclick="toggleFAQ(this)">
-                                <h3 class="font-semibold text-primary">What documents do you notarize?</h3>
-                                <i class="fas fa-chevron-down text-primary transition-transform duration-300 rotate-180"></i>
-                            </button>
-                            <div class="faq-content text-gray-600">
-                                We notarize a wide range of documents including real estate transactions, wills, powers of attorney, affidavits, statutory declarations, and travel consent letters.
-                            </div>
-                        </div>
-                        
-                        <!-- FAQ 2 -->
-                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <button class="w-full text-left flex justify-between items-center faq-toggle" onclick="toggleFAQ(this)">
-                                <h3 class="font-semibold text-primary">What do I need to bring for notarization?</h3>
-                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                            </button>
-                            <div class="faq-content hidden text-gray-600">
-                                You'll need to bring valid government-issued photo identification, the unsigned document, and any witnesses if required. Please call ahead to confirm specific requirements.
-                            </div>
-                        </div>
-                        
-                        <!-- FAQ 3 -->
-                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <button class="w-full text-left flex justify-between items-center faq-toggle" onclick="toggleFAQ(this)">
-                                <h3 class="font-semibold text-primary">How much does notarization cost?</h3>
-                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                            </button>
-                            <div class="faq-content hidden text-gray-600">
-                                Notarization fees vary depending on the type of document and service required. Contact us for a detailed quote based on your specific needs.
-                            </div>
-                        </div>
-                        
-                        <!-- FAQ 4 -->
-                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <button class="w-full text-left flex justify-between items-center faq-toggle" onclick="toggleFAQ(this)">
-                                <h3 class="font-semibold text-primary">Do you offer mobile notary services?</h3>
-                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                            </button>
-                            <div class="faq-content hidden text-gray-600">
-                                Yes, we offer mobile notary services for your convenience. Additional fees may apply for travel within our service area. Please contact us to schedule an appointment.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     
  
@@ -1107,19 +760,36 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-phone mr-2"></i>(604) 123-4567</li>
-                        <li><i class="fas fa-envelope mr-2"></i>info@notarypublic.com</li>
+                        <li><i class="fas fa-phone mr-2"></i>1 604-500-9300</li>
+                        <li><i class="fas fa-envelope mr-2"></i>thindnotary@gmail.com</li>
                         <li><i class="fas fa-map-marker-alt mr-2"></i>123 Main Street, Surrey</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-400">
-                    &copy; 2024 Notary Public Services. All rights reserved. | 
-                    <a href="#" class="hover:text-white">Privacy Policy</a> | 
-                    <a href="#" class="hover:text-white">Terms of Service</a>
-                </p>
+            <div class="border-t border-gray-700 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Copyright - Left Side -->
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2024 Notary Public Services. All rights reserved.
+                    </p>
+                    
+                    <!-- Social Links - Right Side -->
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

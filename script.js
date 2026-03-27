@@ -1,4 +1,6 @@
-// Hero carousel functionality
+// Hero carousel functionality - DISABLED (showing only static slide 3)
+// Carousel code kept for reference but not initialized
+/*
 let currentSlide = 0;
 let slides, indicators, contentItems, totalSlides;
 let carouselInterval;
@@ -67,8 +69,10 @@ function nextSlide() {
     console.log('Auto-advancing to slide:', nextIndex);
     showSlide(nextIndex);
 }
+*/
 
-// Navbar scroll effect
+// Navbar scroll effect - DISABLED to maintain static white background
+/*
 window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 50) {
@@ -77,6 +81,7 @@ window.addEventListener('scroll', function() {
         navbar.classList.remove('scrolled');
     }
 });
+*/
 
 // Add active state to navigation links based on scroll position
 window.addEventListener('scroll', function() {
@@ -103,8 +108,8 @@ window.addEventListener('scroll', function() {
 
 // Set initial active state for home page
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize hero carousel
-    initCarousel();
+    // Hero carousel disabled - showing only static slide 3
+    // initCarousel();
     
     const homeLink = document.querySelector('a[href="#home"]');
     if (homeLink) {
@@ -283,8 +288,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Observe Services section cards
-    const serviceCards = document.querySelectorAll('.service-card-left, .service-card-right');
-    serviceCards.forEach(card => {
+    const serviceCardsLeft = document.querySelectorAll('.service-animate-left');
+    const serviceCardsRight = document.querySelectorAll('.service-animate-right');
+    serviceCardsLeft.forEach(card => {
+        servicesObserver.observe(card);
+    });
+    serviceCardsRight.forEach(card => {
         servicesObserver.observe(card);
     });
     
