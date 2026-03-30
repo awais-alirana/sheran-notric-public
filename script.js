@@ -470,9 +470,22 @@ function toggleMobileServiceArea() {
 // Mobile menu toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
+const hamburgerIcon = document.getElementById('hamburger-icon');
+const closeIcon = document.getElementById('close-icon');
 
 mobileMenuBtn.addEventListener('click', function() {
     mobileMenu.classList.toggle('hidden');
+    
+    // Toggle icons
+    if (mobileMenu.classList.contains('hidden')) {
+        // Show hamburger, hide X
+        hamburgerIcon.classList.remove('opacity-0', 'rotate-[90deg]');
+        closeIcon.classList.add('opacity-0', 'rotate-[-90deg]');
+    } else {
+        // Hide hamburger, show X
+        hamburgerIcon.classList.add('opacity-0', 'rotate-[90deg]');
+        closeIcon.classList.remove('opacity-0', 'rotate-[-90deg]');
+    }
 });
 
 // Close mobile menu when clicking on links
@@ -480,6 +493,9 @@ const mobileLinks = mobileMenu.querySelectorAll('a');
 mobileLinks.forEach(link => {
     link.addEventListener('click', function() {
         mobileMenu.classList.add('hidden');
+        // Reset to hamburger icon
+        hamburgerIcon.classList.remove('opacity-0', 'rotate-[90deg]');
+        closeIcon.classList.add('opacity-0', 'rotate-[-90deg]');
     });
 });
 
@@ -647,25 +663,4 @@ window.addEventListener('resize', fixMobileOverflow);
 setTimeout(fixMobileOverflow, 0);
 setTimeout(fixMobileOverflow, 100);
 setTimeout(fixMobileOverflow, 500);
-
-// Mobile menu toggle with hamburger animation
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', function() {
-        // Toggle active class for hamburger animation
-        this.classList.toggle('active');
-        // Toggle mobile menu visibility
-        mobileMenu.classList.toggle('hidden');
-    });
-    
-    // Close menu when clicking a link
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.add('hidden');
-            mobileMenuBtn.classList.remove('active');
-        });
-    });
-}
 setTimeout(fixMobileOverflow, 1000);

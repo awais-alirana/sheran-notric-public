@@ -286,10 +286,9 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2 relative w-10 h-10 flex flex-col items-center justify-center gap-1.5">
-                    <span class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
-                    <span class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
-                    <span class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2 relative w-10 h-10">
+                    <i class="fas fa-bars text-2xl absolute inset-0 flex items-center justify-center transition-all duration-300" id="hamburger-icon"></i>
+                    <i class="fas fa-times text-2xl absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 rotate-[-90deg]" id="close-icon"></i>
                 </button>
             </div>
             
@@ -307,7 +306,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-[100vh] flex items-center justify-center overflow-hidden pt-32">
+    <section id="home" class="relative h-[80vh] md:h-[100vh] flex items-center justify-center overflow-hidden pt-32">
         <!-- Background Image with Zoom Animation -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/hero-6.jpg" 
@@ -348,8 +347,8 @@
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-            <a href="#about" class="text-white/80 hover:text-white transition-colors">
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center z-10 animate-bounce">
+            <a href="#about" class="text-white/80 hover:text-white transition-colors flex items-center justify-center w-10 h-10">
                 <i class="fas fa-chevron-down text-2xl"></i>
             </a>
         </div>
