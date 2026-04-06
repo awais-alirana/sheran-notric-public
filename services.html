@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Professional Notary Public Services - Trusted & Certified</title>
+    <title>Our Services - Professional Notary Public Services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -73,43 +72,6 @@
             transform: translateY(0);
         }
         
-        /* FAQ Section Scroll Animations */
-        .faq-left-section {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .faq-left-section.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .faq-right-section {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .faq-right-section.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        /* Stats Section Styling */
-        .stat-item {
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .counter {
-            display: inline-block;
-            min-width: 60px;
-        }
-        
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -132,102 +94,6 @@
             overflow-x: hidden;
         }
         
-        /* Fix for transform causing overflow */
-        .animate-on-scroll,
-        .faq-left-section,
-        .faq-right-section {
-            will-change: transform, opacity;
-        }
-        
-        /* Force scrollbar to prevent layout shift */
-        html {
-            overflow-y: scroll;
-        }
-        
-        /* Fix for iOS and mobile browsers */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                position: relative;
-                width: 100%;
-                overflow-x: hidden;
-            }
-        }
-        
-        /* Ensure images don't cause overflow */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        /* Fix testimonial carousel overflow */
-        #testimonial-carousel {
-            width: 100%;
-            max-width: 100vw;
-        }
-        
-        #testimonial-carousel > div {
-            max-width: 100%;
-        }
-        
-        /* Remove any horizontal scroll from all elements */
-        * {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
-        }
-        
-        *::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-        }
-        
-        /* Hero buttons - fit to content on mobile */
-        @media (max-width: 640px) {
-            .hero-button {
-                width: auto !important;
-                min-width: fit-content;
-                padding-left: 16px !important;
-                padding-right: 16px !important;
-            }
-        }
-        
-        /* Hero slide animations */
-        .hero-slide img {
-            animation: zoomAnimation 8s ease-in-out infinite;
-        }
-        
-        @keyframes zoomAnimation {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-        
-        .hero-slide:nth-child(2) img {
-            animation-delay: 2s;
-        }
-        
-        .hero-slide:nth-child(3) img {
-            animation-delay: 4s;
-        }
-        
-        /* Content animations */
-        .hero-content-item {
-            animation: contentFadeIn 1s ease-out;
-        }
-        
-        @keyframes contentFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         /* Active/Selected menu item color */
         .nav-link {
             position: relative;
@@ -248,7 +114,26 @@
         .nav-link:hover::after {
             width: 100%;
         }
-       
+        
+        /* Service card hover effects */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            background-color: #1e3a5f;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -276,16 +161,16 @@
         <div class="max-w-7xl mx-auto px-4 md:px-8 py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <a href="#home" class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-3">
                     <img src="assets/images/logo.jpg" alt="Notary Public" class="h-14 md:h-16 w-auto">
                     <span class="hidden md:block text-lg font-bold text-gray-800 font-heading">Sharan Thind Notary Public</span>
                 </a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Home</a>
+                    <a href="index.html#home" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Home</a>
                     <a href="about.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">About</a>
-                    <a href="services.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
+                    <a href="services.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Services</a>
                     <a href="blog.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
                     <a href="contact.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
                     <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
@@ -302,9 +187,9 @@
             
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
-                <a href="#home" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Home</a>
+                <a href="index.html#home" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Home</a>
                 <a href="about.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">About</a>
-                <a href="services.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
+                <a href="services.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Blog</a>
                 <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
                 <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
@@ -314,112 +199,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative h-[80vh] md:h-[100vh] flex items-center justify-center overflow-hidden pt-32">
-        <!-- Background Image with Zoom Animation -->
-        <div class="absolute inset-0 z-0">
-            <img src="assets/images/hero-6.jpg" 
-                 alt="Notary Services" 
-                 class="w-full h-full object-cover animate-zoom">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
-        </div>
-        
-        <!-- Animated Shapes -->
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-        </div>
-        
-        <!-- Content -->
-        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
-            <div class="animate-fade-in-up">
-                <span class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6 border border-white/20">
-                    <i class="fas fa-shield-alt mr-2"></i>Trusted & Certified
-                </span>
-            </div>
-            
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s">
-                Professional Notary Services
-            </h1>
-            
-            <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
-                Fast, reliable & certified document notarization for all your legal needs in British Columbia
-            </p>
-            
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-0 right-0 flex justify-center z-10 animate-bounce">
-            <a href="#about" class="text-white/80 hover:text-white transition-colors flex items-center justify-center w-10 h-10">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </a>
-        </div>
-    </section>
-
-
-       <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Content on Left -->
-                <div class="about-animate-right order-2 md:order-1">
-                    <div class="inline-flex items-center mb-4">
-                        <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
-                            <i class="fas fa-star mr-2"></i>Who We Are
-                        </span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">About Our Notary Services</h2>
-                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
-                       <b>Sharan Thind Notary Public </b> is a trusted provider of professional notarial services in Surrey, British Columbia. With a strong commitment to accuracy, integrity, and client satisfaction, we offer reliable assistance for a wide range of legal documentation needs.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                       Our goal is to make the notarization process simple, efficient, and stress-free. Whether you require assistance with affidavits, statutory declarations, powers of attorney, or real estate documents, we ensure every document is handled with precision and care.
-                    </p>
-                    
-                    <!-- Feature List -->
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
-                            <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700 font-medium">Licensed & Insured</span>
-                        </div>
-                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
-                            <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700 font-medium">Years of Experience</span>
-                        </div>
-                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
-                            <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700 font-medium">Client Focused</span>
-                        </div>
-                        <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
-                            <i class="fas fa-check-circle text-primary text-xl"></i>
-                            <span class="text-gray-700 font-medium">Competitive Rates</span>
-                        </div>
-                    </div>
-                    
-                    <button onclick="window.location.href='about.html'" 
-                            class="bg-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg" style="font-family: 'Playfair Display', serif;">
-                        Learn More <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-                
-                <!-- Image on Right -->
-                <div class="about-animate-left order-1 md:order-2">
-                    <div class="relative">
-                        <img src="/assets/images/about-img.jpg" 
-                             alt="Professional Notary" 
-                             class="rounded-lg shadow-2xl w-full">
-                        <!-- Decorative Element -->
-                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-lg -z-10"></div>
-                        <div class="absolute -top-4 -left-4 w-16 h-16 bg-secondary/20 rounded-lg -z-10"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-[#F5F5F5]">
+    <section class="py-16 bg-[#F5F5F5] mt-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12 animate-on-scroll">
                 <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4 inline-block">
@@ -509,42 +290,66 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white">
+    <!-- Process Section -->
+    <section class="py-16 bg-light-gray">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Client Testimonials</h2>
-                <p class="text-lg text-gray-600">What our clients say about our services</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Our Process</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Simple, transparent, and efficient process for all your notary needs.
+                </p>
             </div>
             
-            <div class="relative max-w-6xl mx-auto overflow-hidden">
-                <div class="overflow-hidden">
-                    <div id="testimonial-carousel" class="flex transition-transform duration-500 ease-in-out">
-                        <!-- Dynamic testimonials will be loaded here -->
-                        <div id="testimonials-container" class="flex">
-                            <!-- Testimonials loaded from Firebase -->
-                        </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                        1
                     </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Consultation</h3>
+                    <p class="text-gray-600 text-sm">
+                        Discuss your requirements and document needs with our experts.
+                    </p>
                 </div>
                 
-                <!-- Carousel Controls -->
-                <button id="prev-testimonial" class="hidden md:flex absolute -left-2 md:left-0 top-1/2 transform -translate-y-1/2 bg-primary text-white w-10 h-10 md:w-12 md:h-12 rounded-full items-center justify-center hover:bg-secondary transition-colors shadow-lg z-10">
-                    <i class="fas fa-chevron-left text-sm md:text-base"></i>
-                </button>
-                <button id="next-testimonial" class="hidden md:flex absolute -right-2 md:right-0 top-1/2 transform -translate-y-1/2 bg-primary text-white w-10 h-10 md:w-12 md:h-12 rounded-full items-center justify-center hover:bg-secondary transition-colors shadow-lg z-10">
-                    <i class="fas fa-chevron-right text-sm md:text-base"></i>
-                </button>
+                <!-- Step 2 -->
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                        2
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Document Review</h3>
+                    <p class="text-gray-600 text-sm">
+                        We review and prepare your documents for notarization.
+                    </p>
+                </div>
                 
-                <!-- Carousel Indicators -->
-                <div id="testimonial-dots" class="flex justify-center mt-6 space-x-2">
-                    <!-- Dynamic dots will be added here -->
+                <!-- Step 3 -->
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                        3
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Notarization</h3>
+                    <p class="text-gray-600 text-sm">
+                        Professional notarization with proper verification and signing.
+                    </p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                        4
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Delivery</h3>
+                    <p class="text-gray-600 text-sm">
+                        Receive your notarized documents ready for use.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action Section -->
-    <section class="py-16 md:py-24 lg:py-[100px] relative overflow-hidden">
+    <!-- CTA Section -->
+    <section class="py-16 md:py-24 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/CTA-img.jpg" 
@@ -563,16 +368,19 @@
             <p class="text-xl mb-8 animate-on-scroll text-white">
                 Contact us today for professional and reliable notary services
             </p>
-            <button onclick="document.getElementById('contact').scrollIntoView()" 
-                    class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg animate-on-scroll" style="font-family: 'Playfair Display', serif;">
-                Get Started Now
-            </button>
+            <div class="flex flex-col md:flex-row gap-4 justify-center animate-on-scroll">
+                <button onclick="document.getElementById('contact').scrollIntoView()" 
+                        class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Get Started Now
+                </button>
+                <a href="tel:+16045009300" 
+                   class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all duration-300 transform hover:scale-105">
+                    Call Us Now
+                </a>
+            </div>
         </div>
     </section>
 
-
-    
- 
     <!-- Footer -->
     <footer class="bg-dark text-white py-12">
         <div class="max-w-7xl mx-auto px-6">
@@ -645,25 +453,48 @@
         </div>
     </footer>
 
-   
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
 
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
-    
-    <!-- Environment Configuration -->
-    <script src="env.js"></script>
-    
-    <!-- Firebase Configuration & Initialization -->
-    <script src="firebase-config.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('opacity-0');
+            hamburgerIcon.classList.toggle('rotate-[-90deg]');
+            closeIcon.classList.toggle('opacity-0');
+            closeIcon.classList.toggle('rotate-0');
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburgerIcon.classList.remove('opacity-0', 'rotate-[-90deg]');
+                closeIcon.classList.add('opacity-0', 'rotate-[-90deg]');
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Blog Management | Sharan Thind Notary Public</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="env.js"></script>
+    <script src="firebase-config.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2c5282;
+            --accent: #d4af37;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f5f5f5;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .admin-sidebar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input {
+            border: 2px solid #e5e7eb;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .blog-table {
+            overflow-x: auto;
+        }
+        
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-published {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-draft {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 2000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        }
+        
+        .loader {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar w-64 text-white flex-shrink-0">
+        <div class="p-6">
+            <div class="flex items-center space-x-3 mb-8">
+                <img src="assets/images/logo.jpg" alt="Logo" class="h-12 w-12 rounded-full border-2 border-white/30">
+                <div>
+                    <h1 class="font-bold text-lg">Admin Panel</h1>
+                    <p class="text-xs text-white/70">Sharan Thind Notary</p>
+                </div>
+            </div>
+            
+            <nav class="space-y-2">
+                <a href="admin.html" class="flex items-center space-x-3 px-4 py-3 bg-white/20 rounded-lg">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog Management</span>
+                </a>
+                <a href="#" onclick="openTestimonialModal()" class="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-lg transition-colors">
+                    <i class="fas fa-star"></i>
+                    <span>Client Reviews</span>
+                </a>
+                <a href="index.html" class="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-lg transition-colors">
+                    <i class="fas fa-home"></i>
+                    <span>View Website</span>
+                </a>
+            </nav>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-6">
+            <button onclick="logout()" class="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-lg transition-colors w-full">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Blog Management</h1>
+                <p class="text-gray-600 mt-1">Create, edit, and manage blog posts</p>
+            </div>
+            <button onclick="openModal()" class="btn-primary px-6 py-3 rounded-lg flex items-center space-x-2">
+                <i class="fas fa-plus"></i>
+                <span>Add New Blog</span>
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="admin-card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">Total Blogs</p>
+                        <h3 class="text-2xl font-bold text-gray-800" id="totalBlogs">0</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-blog text-blue-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">Published</p>
+                        <h3 class="text-2xl font-bold text-green-600" id="publishedBlogs">0</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">Drafts</p>
+                        <h3 class="text-2xl font-bold text-yellow-600" id="draftBlogs">0</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-clock text-yellow-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">Total Views</p>
+                        <h3 class="text-2xl font-bold text-gray-800">-</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-eye text-purple-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Table -->
+        <div class="admin-card p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-gray-800">All Blog Posts</h2>
+                <div class="flex space-x-4">
+                    <input type="text" id="searchInput" placeholder="Search blogs..." 
+                           class="form-input px-4 py-2 rounded-lg w-64">
+                    <select id="filterStatus" class="form-input px-4 py-2 rounded-lg">
+                        <option value="all">All Status</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="blog-table">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-gray-200">
+                            <th class="text-left py-3 px-4 font-semibold text-gray-700">Blog Post</th>
+                            <th class="text-left py-3 px-4 font-semibold text-gray-700">Category</th>
+                            <th class="text-left py-3 px-4 font-semibold text-gray-700">Status</th>
+                            <th class="text-left py-3 px-4 font-semibold text-gray-700">Date</th>
+                            <th class="text-right py-3 px-4 font-semibold text-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="blogTableBody">
+                        <!-- Blog rows will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="emptyState" class="text-center py-12 hidden">
+                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-blog text-gray-400 text-3xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">No blogs found</h3>
+                <p class="text-gray-500">Create your first blog post to get started</p>
+            </div>
+            
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-12">
+                <div class="loader mx-auto mb-4"></div>
+                <p class="text-gray-500">Loading blogs...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Blog Modal -->
+    <div id="blogModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800" id="modalTitle">Add New Blog</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="blogForm">
+                <input type="hidden" id="blogId">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Title *</label>
+                        <input type="text" id="blogTitle" required
+                               class="form-input w-full px-4 py-3 rounded-lg"
+                               placeholder="Enter blog title">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Category *</label>
+                        <select id="blogCategory" required class="form-input w-full px-4 py-3 rounded-lg">
+                            <option value="">Select category</option>
+                            <option value="Legal Tips">Legal Tips</option>
+                            <option value="Notary Guide">Notary Guide</option>
+                            <option value="Document Help">Document Help</option>
+                            <option value="Industry News">Industry News</option>
+                            <option value="FAQ">FAQ</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Excerpt *</label>
+                    <textarea id="blogExcerpt" required rows="3"
+                              class="form-input w-full px-4 py-3 rounded-lg"
+                              placeholder="Brief summary of the blog post"></textarea>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Content *</label>
+                    <textarea id="blogContent" required rows="8"
+                              class="form-input w-full px-4 py-3 rounded-lg"
+                              placeholder="Write your blog content here..."></textarea>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Author *</label>
+                        <input type="text" id="blogAuthor" required
+                               class="form-input w-full px-4 py-3 rounded-lg"
+                               placeholder="Author name">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
+                        <select id="blogStatus" class="form-input w-full px-4 py-3 rounded-lg">
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Featured Image URL</label>
+                    <input type="url" id="blogImage"
+                           class="form-input w-full px-4 py-3 rounded-lg"
+                           placeholder="https://example.com/image.jpg">
+                </div>
+                
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="closeModal()" 
+                            class="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-primary px-6 py-3 rounded-lg">
+                        <span id="submitBtnText">Create Blog</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content p-6 max-w-md">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Delete Blog</h2>
+                <p class="text-gray-600">Are you sure you want to delete this blog post? This action cannot be undone.</p>
+            </div>
+            
+            <div class="flex justify-center space-x-4">
+                <button onclick="closeDeleteModal()" 
+                        class="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                    Cancel
+                </button>
+                <button onclick="confirmDelete()" class="btn-danger px-6 py-3 rounded-lg">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial Management Modal -->
+    <div id="testimonialModal" class="modal">
+        <div class="modal-content p-6 max-w-4xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Manage Client Reviews</h2>
+                <button onclick="closeTestimonialModal()" class="text-gray-400 hover:text-gray-600 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Add New Testimonial Form -->
+            <form id="testimonialForm" class="mb-8 p-4 bg-gray-50 rounded-lg">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Review</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Client Name *</label>
+                        <input type="text" id="testimonialName" required
+                               class="form-input w-full px-4 py-2 rounded-lg"
+                               placeholder="e.g., John Smith">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Service Type *</label>
+                        <input type="text" id="testimonialService" required
+                               class="form-input w-full px-4 py-2 rounded-lg"
+                               placeholder="e.g., Real Estate Client">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Review Text *</label>
+                    <textarea id="testimonialText" required rows="3"
+                              class="form-input w-full px-4 py-2 rounded-lg"
+                              placeholder="Enter client review..."></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Rating</label>
+                    <select id="testimonialRating" class="form-input w-full px-4 py-2 rounded-lg">
+                        <option value="5">5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="3">3 Stars</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-success px-6 py-2 rounded-lg w-full">
+                    <i class="fas fa-plus mr-2"></i>Add Review
+                </button>
+            </form>
+            
+            <!-- Testimonials List -->
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Existing Reviews</h3>
+            <div id="testimonialsList" class="space-y-3 max-h-96 overflow-y-auto">
+                <!-- Testimonials will be populated here -->
+            </div>
+            
+            <!-- Loading State -->
+            <div id="testimonialsLoading" class="text-center py-8">
+                <div class="loader mx-auto mb-4"></div>
+                <p class="text-gray-500">Loading reviews...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="admin.js"></script>
+    
+    <!-- Testimonial Management Functions -->
+    <script>
+    // Testimonial Management
+    let testimonials = [];
+
+    function openTestimonialModal() {
+        document.getElementById('testimonialModal').classList.add('active');
+        loadTestimonials();
+    }
+
+    function closeTestimonialModal() {
+        document.getElementById('testimonialModal').classList.remove('active');
+        document.getElementById('testimonialForm').reset();
+    }
+
+    function showTestimonialsLoading(show) {
+        const loader = document.getElementById('testimonialsLoading');
+        const list = document.getElementById('testimonialsList');
+        if (loader) loader.style.display = show ? 'block' : 'none';
+        if (list) list.style.display = show ? 'none' : 'block';
+    }
+
+    function getInitials(name) {
+        return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+    }
+
+    function renderStars(rating) {
+        let stars = '';
+        for (let i = 0; i < 5; i++) {
+            stars += `<i class="fas fa-star${i < rating ? '' : ' text-gray-300'}"></i>`;
+        }
+        return stars;
+    }
+
+    async function loadTestimonials() {
+        try {
+            showTestimonialsLoading(true);
+            
+            if (!window.firebaseDB) {
+                console.log('Firebase not ready');
+                setTimeout(loadTestimonials, 500);
+                return;
+            }
+            
+            const db = window.firebaseDB;
+            const snapshot = await db.collection('testimonials')
+                .orderBy('createdAt', 'desc')
+                .get();
+            
+            testimonials = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            
+            renderTestimonials();
+            showTestimonialsLoading(false);
+        } catch (error) {
+            console.error('Error loading testimonials:', error);
+            showNotification('Error loading reviews', 'error');
+            showTestimonialsLoading(false);
+        }
+    }
+
+    function renderTestimonials() {
+        const container = document.getElementById('testimonialsList');
+        
+        if (testimonials.length === 0) {
+            container.innerHTML = `
+                <div class="text-center py-8">
+                    <i class="fas fa-star text-gray-300 text-3xl mb-3"></i>
+                    <p class="text-gray-500">No reviews yet. Add your first review!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = testimonials.map(testimonial => `
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center mr-3 font-semibold text-sm">
+                            ${getInitials(testimonial.name)}
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">${testimonial.name}</p>
+                            <p class="text-xs text-gray-500">${testimonial.service}</p>
+                            <div class="flex text-yellow-400 text-xs mt-1">
+                                ${renderStars(testimonial.rating || 5)}
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="deleteTestimonial('${testimonial.id}')" 
+                            class="text-red-500 hover:text-red-700 transition-colors">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <p class="text-gray-700 mt-3 text-sm">${testimonial.text}</p>
+            </div>
+        `).join('');
+    }
+
+    // Handle testimonial form submission
+    document.getElementById('testimonialForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('testimonialName').value.trim();
+        const service = document.getElementById('testimonialService').value.trim();
+        const text = document.getElementById('testimonialText').value.trim();
+        const rating = parseInt(document.getElementById('testimonialRating').value);
+        
+        try {
+            const db = window.firebaseDB;
+            const testimonialData = {
+                name,
+                service,
+                text,
+                rating,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            
+            await db.collection('testimonials').add(testimonialData);
+            
+            showNotification('Review added successfully!', 'success');
+            document.getElementById('testimonialForm').reset();
+            loadTestimonials();
+        } catch (error) {
+            console.error('Error adding testimonial:', error);
+            showNotification('Error adding review', 'error');
+        }
+    });
+
+    async function deleteTestimonial(id) {
+        if (!confirm('Are you sure you want to delete this review?')) return;
+        
+        try {
+            const db = window.firebaseDB;
+            await db.collection('testimonials').doc(id).delete();
+            showNotification('Review deleted successfully!', 'success');
+            loadTestimonials();
+        } catch (error) {
+            console.error('Error deleting testimonial:', error);
+            showNotification('Error deleting review', 'error');
+        }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const blogModal = document.getElementById('blogModal');
+        const deleteModal = document.getElementById('deleteModal');
+        const testimonialModal = document.getElementById('testimonialModal');
+        
+        if (event.target === blogModal) {
+            closeModal();
+        }
+        if (event.target === deleteModal) {
+            closeDeleteModal();
+        }
+        if (event.target === testimonialModal) {
+            closeTestimonialModal();
+        }
+    }
+    </script>
+</body>
+</html>

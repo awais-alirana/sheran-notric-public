@@ -309,124 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (statsSection) statsObserver.observe(statsSection);
 });
 
-// Testimonial Carousel
-let currentTestimonialSlide = 0;
-const carousel = document.getElementById('testimonial-carousel');
-const dots = document.querySelectorAll('.testimonial-dot');
-let isTransitioning = false;
-
-// Clone cards to create seamless loop
-function initializeCarousel() {
-    const cards = carousel.children;
-    const cardCount = cards.length;
-    
-    // Clone all cards and append to create seamless loop
-    for (let i = 0; i < cardCount; i++) {
-        const clone = cards[i].cloneNode(true);
-        carousel.appendChild(clone);
-    }
-}
-
-function updateCarousel(instant = false) {
-    if (instant) {
-        carousel.style.transition = 'none';
-    } else {
-        carousel.style.transition = 'transform 0.5s ease-in-out';
-    }
-    
-    const slideWidth = window.innerWidth >= 768 ? 33.333 : 100; // 3 cards on desktop, 1 on mobile
-    const offset = -(currentTestimonialSlide * slideWidth);
-    carousel.style.transform = `translateX(${offset}%)`;
-    
-    // Update dots based on actual position (mod 6 for circular behavior)
-    const dotIndex = currentTestimonialSlide % 6;
-    dots.forEach((dot, index) => {
-        if (index === dotIndex) {
-            dot.classList.remove('bg-gray-300');
-            dot.classList.add('bg-primary');
-        } else {
-            dot.classList.remove('bg-primary');
-            dot.classList.add('bg-gray-300');
-        }
-    });
-}
-
-function nextSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    
-    currentTestimonialSlide++;
-    updateCarousel();
-    
-    // Check if we need to reset position (after transition)
-    setTimeout(() => {
-        // If we've gone through the original set, reset without animation
-        if (currentTestimonialSlide >= 6) {
-            currentTestimonialSlide = 0; // Reset to start
-            updateCarousel(true); // Reset without animation
-        }
-        isTransitioning = false;
-    }, 500);
-}
-
-function prevSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    
-    // If we're at the start, go to the cloned set
-    if (currentTestimonialSlide === 0) {
-        currentTestimonialSlide = 6; // Jump to cloned set
-        updateCarousel(true); // Set position without animation
-        
-        setTimeout(() => {
-            currentTestimonialSlide = 5;
-            updateCarousel(); // Animate to previous position
-        }, 50);
-    } else {
-        currentTestimonialSlide--;
-        updateCarousel();
-    }
-    
-    setTimeout(() => {
-        isTransitioning = false;
-    }, 500);
-}
-
-function goToSlide(slideIndex) {
-    currentTestimonialSlide = slideIndex;
-    updateCarousel();
-}
-
-// Initialize carousel on page load
-document.addEventListener('DOMContentLoaded', function() {
-    initializeCarousel();
-    updateCarousel(true); // Set initial position without animation
-    
-    // Force recalculation after a short delay to fix mobile overflow issue
-    setTimeout(() => {
-        updateCarousel(true);
-    }, 100);
-    
-    // Force recalculation after images load
-    window.addEventListener('load', () => {
-        updateCarousel(true);
-    });
-});
-
-// Event listeners
-document.getElementById('next-testimonial').addEventListener('click', nextSlide);
-document.getElementById('prev-testimonial').addEventListener('click', prevSlide);
-
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToSlide(index));
-});
-
-// Auto-play carousel
-setInterval(nextSlide, 5000);
-
-// Handle window resize
-window.addEventListener('resize', updateCarousel);
-
 // FAQ Toggle Function
 function toggleFAQ(button) {
     const content = button.nextElementSibling;
@@ -461,44 +343,6 @@ function toggleFAQ(button) {
     }
 }
 
-// Mobile service area toggle
-function toggleMobileServiceArea() {
-    const serviceArea = document.getElementById('mobile-service-area');
-    serviceArea.classList.toggle('hidden');
-}
-
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const hamburgerIcon = document.getElementById('hamburger-icon');
-const closeIcon = document.getElementById('close-icon');
-
-mobileMenuBtn.addEventListener('click', function() {
-    mobileMenu.classList.toggle('hidden');
-    
-    // Toggle icons
-    if (mobileMenu.classList.contains('hidden')) {
-        // Show hamburger, hide X
-        hamburgerIcon.classList.remove('opacity-0', 'rotate-[90deg]');
-        closeIcon.classList.add('opacity-0', 'rotate-[-90deg]');
-    } else {
-        // Hide hamburger, show X
-        hamburgerIcon.classList.add('opacity-0', 'rotate-[90deg]');
-        closeIcon.classList.remove('opacity-0', 'rotate-[-90deg]');
-    }
-});
-
-// Close mobile menu when clicking on links
-const mobileLinks = mobileMenu.querySelectorAll('a');
-mobileLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-        // Reset to hamburger icon
-        hamburgerIcon.classList.remove('opacity-0', 'rotate-[90deg]');
-        closeIcon.classList.add('opacity-0', 'rotate-[-90deg]');
-    });
-});
-
 // Intersection Observer for scroll animations
 const observerOptions = {
     threshold: 0.1,
@@ -517,104 +361,54 @@ const observer = new IntersectionObserver(function(entries) {
 const animateElements = document.querySelectorAll('.animate-on-scroll');
 animateElements.forEach(el => observer.observe(el));
 
-// Testimonials data
-const testimonials = [
-    {
-        name: "John Smith",
-        role: "Real Estate Client",
-        content: "Professional, efficient, and very helpful. Made the entire notarization process smooth and stress-free. Highly recommended!",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-    },
-    {
-        name: "Sarah Johnson",
-        role: "Estate Planning Client",
-        content: "Excellent service! They took care of all our estate planning needs with great attention to detail and professionalism.",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-    },
-    {
-        name: "Michael Chen",
-        role: "Business Client",
-        content: "Highly recommended! Professional, knowledgeable, and very reasonable rates for their services. Will definitely use again.",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-    }
-];
-
-let currentTestimonial = 0;
-const testimonialSlider = document.getElementById('testimonial-slider');
-
-function showTestimonial(index) {
-    const testimonial = testimonials[index];
-    testimonialSlider.innerHTML = `
-        <div class="testimonial-slide">
-            <div class="bg-light-gray p-8 rounded-lg shadow-lg">
-                <div class="flex mb-4">
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                </div>
-                <p class="text-lg text-gray-600 mb-6 italic">
-                    "${testimonial.content}"
-                </p>
-                <div class="flex items-center">
-                    <img src="${testimonial.image}" 
-                         alt="${testimonial.name}" 
-                         class="w-12 h-12 rounded-full mr-4">
-                    <div>
-                        <p class="font-semibold text-primary">${testimonial.name}</p>
-                        <p class="text-sm text-gray-500">${testimonial.role}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Testimonial slider controls
-document.getElementById('prev-testimonial').addEventListener('click', function() {
-    currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-    showTestimonial(currentTestimonial);
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
 });
-
-document.getElementById('next-testimonial').addEventListener('click', function() {
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    showTestimonial(currentTestimonial);
-});
-
-// Auto-slide testimonials
-setInterval(function() {
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    showTestimonial(currentTestimonial);
-}, 5000);
 
 // Contact form submission
 const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Show loading state
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    // Simulate form submission
-    setTimeout(() => {
-        // Show success notification
-        showNotification('Message sent successfully! We will get back to you soon.');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        // Reset form
-        contactForm.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
-});
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+            // Show success notification
+            showNotification('Message sent successfully! We will get back to you soon.');
+            
+            // Reset form
+            contactForm.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }, 2000);
+    });
+}
 
 // Notification function
 function showNotification(message) {
     const notification = document.getElementById('notification');
     const notificationMessage = document.getElementById('notification-message');
+    
+    if (!notification || !notificationMessage) {
+        console.log('Notification elements not found');
+        return;
+    }
     
     notificationMessage.textContent = message;
     notification.classList.remove('translate-x-full');
@@ -664,3 +458,287 @@ setTimeout(fixMobileOverflow, 0);
 setTimeout(fixMobileOverflow, 100);
 setTimeout(fixMobileOverflow, 500);
 setTimeout(fixMobileOverflow, 1000);
+
+// ==================== DYNAMIC TESTIMONIALS FROM FIREBASE ====================
+
+// Load testimonials from Firebase
+async function loadTestimonialsFromFirebase() {
+    console.log('=== Starting Firebase Load ===');
+    try {
+        // Check if Firebase is initialized
+        if (!window.firebaseDB) {
+            console.log('Firebase DB not available');
+            return;
+        }
+        
+        console.log('Firebase DB found, fetching testimonials...');
+        const db = window.firebaseDB;
+        
+        // Try without orderBy first to see if data exists
+        const snapshot = await db.collection('testimonials').get();
+        
+        console.log('Firebase response received, docs count:', snapshot.docs.length);
+        
+        const testimonials = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        
+        console.log('Mapped testimonials:', testimonials);
+        
+        if (testimonials.length > 0) {
+            console.log('Found testimonials in Firebase, rendering...');
+            renderDynamicTestimonials(testimonials);
+        } else {
+            console.log('No testimonials found in Firebase collection');
+        }
+    } catch (error) {
+        console.error('Error loading testimonials from Firebase:', error);
+        console.error('Error details:', error.message);
+    }
+}
+
+// Default testimonials fallback
+const defaultTestimonials = [
+    {
+        name: "John Smith",
+        service: "Real Estate Client",
+        text: "Professional, efficient, and very helpful. Made the entire notarization process smooth and stress-free. Highly recommended!",
+        rating: 5
+    },
+    {
+        name: "Sarah Johnson",
+        service: "Estate Planning Client",
+        text: "Excellent service! They handled our estate planning documents with great care and attention to detail. Very knowledgeable staff.",
+        rating: 5
+    },
+    {
+        name: "Michael Chen",
+        service: "Power of Attorney Client",
+        text: "Quick turnaround time and professional service. They made the power of attorney process simple and straightforward. Great experience!",
+        rating: 5
+    },
+    {
+        name: "Emily Davis",
+        service: "Document Notarization Client",
+        text: "Outstanding service for document notarization. The team is professional, courteous, and very efficient. Will definitely use again!",
+        rating: 5
+    },
+    {
+        name: "Robert Wilson",
+        service: "Mobile Service Client",
+        text: "Mobile notary service was a lifesaver! They came to our office and handled everything professionally. Convenient and reliable!",
+        rating: 5
+    },
+    {
+        name: "Lisa Anderson",
+        service: "Travel Consent Client",
+        text: "Great experience with travel consent letters. They explained everything clearly and processed documents quickly. Highly recommend!",
+        rating: 5
+    }
+];
+
+// Get initials from name
+function getInitials(name) {
+    if (!name) return '?';
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+}
+
+// Render stars HTML
+function renderStars(rating) {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+        stars.push(`<i class="fas fa-star${i < rating ? '' : ' text-gray-300'}"></i>`);
+    }
+    return stars.join('');
+}
+
+// Render testimonials dynamically
+function renderDynamicTestimonials(testimonials) {
+    const container = document.getElementById('testimonials-container');
+    const dotsContainer = document.getElementById('testimonial-dots');
+    
+    if (!container || !dotsContainer) return;
+    
+    // Clear existing content
+    container.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    
+    // Render each testimonial card
+    testimonials.forEach((testimonial, index) => {
+        const card = document.createElement('div');
+        card.className = 'w-full md:w-1/3 flex-shrink-0 px-4';
+        card.innerHTML = `
+            <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-all duration-300 h-[320px] overflow-hidden flex flex-col">
+                <div class="flex items-center mb-3 flex-shrink-0">
+                    <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center mr-3 font-semibold text-sm">
+                        ${getInitials(testimonial.name)}
+                    </div>
+                    <div class="min-w-0">
+                        <p class="font-semibold text-gray-900 text-sm truncate">${testimonial.name}</p>
+                        <p class="text-xs text-gray-500 truncate">${testimonial.service}</p>
+                    </div>
+                </div>
+                <div class="flex items-center mb-3 flex-shrink-0">
+                    <div class="flex text-yellow-400 text-sm">
+                        ${renderStars(testimonial.rating || 5)}
+                    </div>
+                    <span class="ml-2 text-sm text-gray-500">${testimonial.rating || 5}.0</span>
+                </div>
+                <div class="text-gray-700 text-sm leading-relaxed flex-1 overflow-hidden relative">
+                    <p style="display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden;">
+                        ${testimonial.text}
+                    </p>
+                    ${testimonial.text.length > 150 ? '<p class="text-primary text-xs mt-1 font-medium cursor-pointer hover:underline">Read more...</p>' : ''}
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+    
+    // Create dots for carousel
+    totalTestimonialSlides = Math.ceil(testimonials.length / (window.innerWidth >= 768 ? 3 : 1));
+    for (let i = 0; i < totalTestimonialSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `testimonial-dot w-3 h-3 rounded-full transition-colors ${i === 0 ? 'bg-primary' : 'bg-gray-300'}`;
+        dot.dataset.slide = i;
+        dot.addEventListener('click', () => goToTestimonialSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+    
+    // Reset carousel position
+    currentTestimonialSlide = 0;
+    updateCarouselPosition(true);
+}
+
+// Load testimonials when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, about to render testimonials...');
+    
+    // First, render default testimonials immediately so something shows
+    console.log('Rendering default testimonials immediately...');
+    renderDynamicTestimonials(defaultTestimonials);
+    
+    // Try to load from Firebase with multiple retries
+    let attempts = 0;
+    const maxAttempts = 5;
+    
+    function tryLoadFromFirebase() {
+        attempts++;
+        console.log(`Firebase load attempt ${attempts}...`);
+        
+        if (window.firebaseDB) {
+            console.log('Firebase DB is ready, loading testimonials...');
+            loadTestimonialsFromFirebase();
+        } else if (attempts < maxAttempts) {
+            console.log('Firebase DB not ready, retrying...');
+            setTimeout(tryLoadFromFirebase, 1000);
+        } else {
+            console.log('Max attempts reached, keeping default testimonials');
+        }
+    }
+    
+    // Start trying after initial delay
+    setTimeout(tryLoadFromFirebase, 500);
+});
+
+// Also reload testimonials when page becomes visible
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible' && window.firebaseDB) {
+        console.log('Page became visible, reloading testimonials...');
+        loadTestimonialsFromFirebase();
+    }
+});
+
+// ==================== CAROUSEL NAVIGATION ====================
+
+let currentTestimonialSlide = 0;
+let isTransitioning = false;
+let totalTestimonialSlides = 0;
+
+function updateCarouselPosition(instant = false) {
+    const carousel = document.getElementById('testimonial-carousel');
+    if (!carousel) return;
+    
+    if (instant) {
+        carousel.style.transition = 'none';
+    } else {
+        carousel.style.transition = 'transform 0.5s ease-in-out';
+    }
+    
+    const slideWidth = window.innerWidth >= 768 ? 33.333 : 100;
+    const offset = -(currentTestimonialSlide * slideWidth);
+    carousel.style.transform = `translateX(${offset}%)`;
+    
+    // Update dots
+    const dots = document.querySelectorAll('.testimonial-dot');
+    const dotIndex = currentTestimonialSlide % totalTestimonialSlides;
+    dots.forEach((dot, index) => {
+        if (index === dotIndex) {
+            dot.classList.remove('bg-gray-300');
+            dot.classList.add('bg-primary');
+        } else {
+            dot.classList.remove('bg-primary');
+            dot.classList.add('bg-gray-300');
+        }
+    });
+}
+
+function nextTestimonialSlide() {
+    if (isTransitioning || totalTestimonialSlides === 0) return;
+    isTransitioning = true;
+    
+    currentTestimonialSlide++;
+    updateCarouselPosition();
+    
+    setTimeout(() => {
+        if (currentTestimonialSlide >= totalTestimonialSlides) {
+            currentTestimonialSlide = 0;
+            updateCarouselPosition(true);
+        }
+        isTransitioning = false;
+    }, 500);
+}
+
+function prevTestimonialSlide() {
+    if (isTransitioning || totalTestimonialSlides === 0) return;
+    isTransitioning = true;
+    
+    if (currentTestimonialSlide === 0) {
+        currentTestimonialSlide = totalTestimonialSlides;
+        updateCarouselPosition(true);
+        
+        setTimeout(() => {
+            currentTestimonialSlide = totalTestimonialSlides - 1;
+            updateCarouselPosition();
+        }, 50);
+    } else {
+        currentTestimonialSlide--;
+        updateCarouselPosition();
+    }
+    
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 500);
+}
+
+function goToTestimonialSlide(slideIndex) {
+    currentTestimonialSlide = slideIndex;
+    updateCarouselPosition();
+}
+
+// Event listeners for carousel navigation
+document.addEventListener('DOMContentLoaded', function() {
+    const nextBtn = document.getElementById('next-testimonial');
+    const prevBtn = document.getElementById('prev-testimonial');
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextTestimonialSlide);
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevTestimonialSlide);
+    }
+});
+
+// Auto-play carousel
+setInterval(nextTestimonialSlide, 5000);

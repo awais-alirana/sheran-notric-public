@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Blog - Professional Notary Public Services - Trusted & Certified</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="env.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e3a5f',
+                        secondary: '#2c5282',
+                        dark: '#0f172a',
+                        white: '#FFFFFF',
+                        'light-gray': '#F5F5F5',
+                        accent: '#3b82f6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent horizontal overflow */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        /* Fix for mobile overflow issues */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Ensure all sections stay within viewport */
+        section {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        /* Blog specific styles */
+        .blog-card {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-category {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover .blog-category {
+            background-color: var(--tw-colors-primary);
+            color: white;
+        }
+        
+        /* Active/Selected menu item color */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #8B1E1E;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+       
+        .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <!-- Top Contact Bar inside Navbar -->
+        <div class="bg-primary text-white py-2">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <div class="flex flex-col md:flex-row items-center justify-between text-sm">
+                    <div class="flex items-center space-x-6">
+                        <a href="mailto:thindnotary@gmail.com" class="flex items-center space-x-2 hover:text-accent transition-colors font-body">
+                            <i class="fas fa-envelope"></i>
+                            <span>thindnotary@gmail.com</span>
+                        </a>
+                        <a href="tel:+16045009300" class="flex items-center space-x-2 hover:text-accent transition-colors font-body">
+                            <i class="fas fa-phone"></i>
+                            <span>1 604-500-9300</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Navbar -->
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="assets/images/logo.jpg" alt="Notary Public" class="h-14 md:h-16 w-auto">
+                    <span class="hidden md:block text-lg font-bold text-gray-800 font-heading">Sharan Thind Notary Public</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Home</a>
+                    <a href="about.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">About</a>
+                    <a href="services.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
+                    <a href="blog.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Blog</a>
+                    <a href="contact.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
+                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                        Book an Appointment
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2 relative w-10 h-10">
+                    <i class="fas fa-bars text-2xl absolute inset-0 flex items-center justify-center transition-all duration-300" id="hamburger-icon"></i>
+                    <i class="fas fa-times text-2xl absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 rotate-[-90deg]" id="close-icon"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <a href="index.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Home</a>
+                <a href="index.html#about" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">About</a>
+                <a href="index.html#services" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
+                <a href="blog.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
+                <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
+                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                    Book an Appointment
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden pt-32">
+        <!-- Background Image with Zoom Animation -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/hero-6.jpg" 
+                 alt="Blog" 
+                 class="w-full h-full object-cover animate-zoom">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/80"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <div class="animate-fade-in-up">
+                <span class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6 border border-white/20">
+                    <i class="fas fa-blog mr-2"></i>Insights & Resources
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s">
+                Our Blog
+            </h1>
+            
+            <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+                Stay informed with the latest notary insights, legal tips, and industry updates
+            </p>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4 inline-block">
+                    <i class="fas fa-newspaper mr-2"></i>Latest Articles
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Recent Blog Posts</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Expert insights and practical advice on notary services and legal document preparation
+                </p>
+            </div>
+            
+            <!-- Blog Grid - Dynamic Content -->
+            <div id="blogGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog posts will be loaded dynamically from Firestore -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                <p class="mt-4 text-gray-600">Loading articles...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="text-center py-12 hidden">
+                <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-4">
+                    <i class="fas fa-newspaper text-gray-400 text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">No articles yet</h3>
+                <p class="text-gray-500">Check back soon for new content!</p>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Load More Articles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-light-gray">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-primary mb-4">Stay Updated</h2>
+                <p class="text-gray-600 mb-6">Subscribe to our newsletter for the latest notary tips and legal insights</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" 
+                           placeholder="Enter your email" 
+                           class="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-primary">
+                    <button type="submit" 
+                            class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="assets/images/logo.jpg" alt="Sharan Thind Notary Public" class="h-12 w-auto rounded-full">
+                        <span class="text-lg font-bold" style="font-family: 'Playfair Display', serif;">Sharan Thind Notary</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Professional notary services in Surrey, BC. Trusted, certified, and reliable.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" style="font-family: 'Playfair Display', serif;">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#home" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">About</a></li>
+                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" style="font-family: 'Playfair Display', serif;">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Letter of Invitation</a></li>
+                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Powers of Attorney</a></li>
+                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Witness of Signature</a></li>
+                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Statutory Declarations & Affidavits</a></li>
+                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Real Estate</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span class="text-gray-300">thindnotary@gmail.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span class="text-gray-300">1 604-500-9300</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            <span class="text-gray-300">Surrey, BC, Canada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2026 Sharan Thind Notary Public. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Firebase Blog Loading
+        let db;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for Firebase to be ready
+            if (window.firebaseDB) {
+                db = window.firebaseDB;
+                loadBlogs();
+            } else {
+                document.addEventListener('firebaseReady', function() {
+                    db = window.firebaseDB;
+                    loadBlogs();
+                });
+            }
+        });
+        
+        async function loadBlogs() {
+            try {
+                const blogGrid = document.getElementById('blogGrid');
+                const loadingState = document.getElementById('loadingState');
+                const emptyState = document.getElementById('emptyState');
+                
+                // Show loading
+                loadingState.classList.remove('hidden');
+                blogGrid.classList.add('hidden');
+                emptyState.classList.add('hidden');
+                
+                // Fetch all blogs from Firestore (simpler query without composite index)
+                const snapshot = await db.collection('blogs').get();
+                
+                // Filter published blogs client-side
+                const publishedBlogs = snapshot.docs
+                    .filter(doc => doc.data().status === 'published')
+                    .sort((a, b) => {
+                        const dateA = a.data().createdAt?.toDate?.() || new Date(a.data().createdAt);
+                        const dateB = b.data().createdAt?.toDate?.() || new Date(b.data().createdAt);
+                        return dateB - dateA;
+                    });
+                
+                // Hide loading
+                loadingState.classList.add('hidden');
+                
+                if (publishedBlogs.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+                
+                // Render blogs
+                blogGrid.innerHTML = publishedBlogs.map(doc => {
+                    const blog = doc.data();
+                    return createBlogCard(doc.id, blog);
+                }).join('');
+                
+                blogGrid.classList.remove('hidden');
+                
+                // Re-initialize scroll animations for new elements
+                initScrollAnimations();
+                
+            } catch (error) {
+                console.error('Error loading blogs:', error);
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('emptyState').classList.remove('hidden');
+            }
+        }
+        
+        function createBlogCard(id, blog) {
+            let date = 'Recent';
+            if (blog.createdAt) {
+                try {
+                    // Handle Firestore timestamp
+                    if (blog.createdAt.toDate) {
+                        date = blog.createdAt.toDate().toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    } else if (typeof blog.createdAt === 'string') {
+                        // Handle ISO string date
+                        date = new Date(blog.createdAt).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    }
+                } catch (e) {
+                    console.error('Error parsing date:', e);
+                    date = 'Recent';
+                }
+            }
+            
+            const readTime = Math.ceil((blog.content?.split(' ').length || 100) / 200) || 5;
+            
+            return `
+                <article class="blog-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll">
+                    <div class="relative">
+                        <img src="${blog.image || 'assets/images/blog-placeholder.jpg'}" 
+                             alt="${blog.title}" 
+                             class="w-full h-48 object-cover"
+                             onerror="this.src='assets/images/blog-placeholder.jpg'">
+                        <div class="absolute top-4 left-4">
+                            <span class="blog-category bg-white/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                                ${blog.category}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-calendar mr-2"></i>
+                            <span>${date}</span>
+                            <span class="mx-2">•</span>
+                            <span>${readTime} min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">${blog.title}</h3>
+                        <p class="text-gray-600 mb-4">${blog.excerpt || blog.content?.substring(0, 150) + '...'}</p>
+                        <a href="blog-detail.html?id=${id}" 
+                           class="inline-flex items-center text-primary font-semibold hover:text-secondary transition-colors">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                    </div>
+                </article>
+            `;
+        }
+        
+        function showBlogDetail(blogId) {
+            // Navigate to blog detail page
+            window.location.href = `blog-detail.html?id=${blogId}`;
+        }
+        
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Blog page specific animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize scroll animations
+            initScrollAnimations();
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerIcon.classList.toggle('opacity-0');
+                hamburgerIcon.classList.toggle('rotate-[-90deg]');
+                closeIcon.classList.toggle('opacity-0');
+                closeIcon.classList.toggle('rotate-[-90deg]');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('opacity-0');
+                    hamburgerIcon.classList.remove('rotate-[-90deg]');
+                    closeIcon.classList.add('opacity-0');
+                    closeIcon.classList.add('rotate-[-90deg]');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

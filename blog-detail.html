@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Blog Detail | Sharan Thind Notary Public</title>
+    <meta name="description" content="Read expert notary insights, legal tips, and industry updates from Sharan Thind, a trusted Notary Public in Surrey, BC.">
+    <meta name="keywords" content="notary public, legal services, notary tips, Surrey BC, document notarization">
+    <meta name="author" content="Sharan Thind Notary Public">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="" id="canonicalUrl">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Blog Detail | Sharan Thind Notary Public">
+    <meta property="og:description" content="Read expert notary insights and legal tips from Sharan Thind Notary Public in Surrey, BC.">
+    <meta property="og:image" content="assets/images/logo.jpg">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="Sharan Thind Notary Public">
+    <meta property="article:author" content="Sharan Thind">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog Detail | Sharan Thind Notary Public">
+    <meta name="twitter:description" content="Read expert notary insights and legal tips from Sharan Thind Notary Public in Surrey, BC.">
+    <meta name="twitter:image" content="assets/images/logo.jpg">
+    
+    <!-- Structured Data - Schema.org JSON-LD -->
+    <script type="application/ld+json" id="blogSchema">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "description": "",
+        "image": "",
+        "author": {
+            "@type": "Person",
+            "name": "Sharan Thind"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Sharan Thind Notary Public",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "assets/images/logo.jpg"
+            }
+        },
+        "datePublished": "",
+        "dateModified": "",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": ""
+        }
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json" id="breadcrumbSchema">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "index.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "blog.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Blog Post"
+            }
+        ]
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="env.js"></script>
+    <script src="firebase-config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e3a5f',
+                        secondary: '#2c5282',
+                        dark: '#0f172a',
+                        white: '#FFFFFF',
+                        'light-gray': '#F5F5F5',
+                        accent: '#3b82f6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* FAQ Section Scroll Animations */
+        .faq-left-section {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .faq-left-section.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .faq-right-section {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .faq-right-section.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Stats Section Styling */
+        .stat-item {
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .counter {
+            display: inline-block;
+            min-width: 60px;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent horizontal overflow */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        /* Fix for mobile overflow issues */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Ensure all sections stay within viewport */
+        section {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        /* Fix for transform causing overflow */
+        .animate-on-scroll,
+        .faq-left-section,
+        .faq-right-section {
+            will-change: transform, opacity;
+        }
+        
+        /* Force scrollbar to prevent layout shift */
+        html {
+            overflow-y: scroll;
+        }
+        
+        /* Fix for iOS and mobile browsers */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                position: relative;
+                width: 100%;
+                overflow-x: hidden;
+            }
+        }
+        
+        /* Ensure images don't cause overflow */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Fix testimonial carousel overflow */
+        #testimonial-carousel {
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        #testimonial-carousel > div {
+            max-width: 100%;
+        }
+        
+        /* Remove any horizontal scroll from all elements */
+        * {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        *::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        
+        /* Hero buttons - fit to content on mobile */
+        @media (max-width: 640px) {
+            .hero-button {
+                width: auto !important;
+                min-width: fit-content;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+        }
+        
+        /* Hero slide animations */
+        .hero-slide img {
+            animation: zoomAnimation 8s ease-in-out infinite;
+        }
+        
+        @keyframes zoomAnimation {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .hero-slide:nth-child(2) img {
+            animation-delay: 2s;
+        }
+        
+        .hero-slide:nth-child(3) img {
+            animation-delay: 4s;
+        }
+        
+        /* Content animations */
+        .hero-content-item {
+            animation: contentFadeIn 1s ease-out;
+        }
+        
+        @keyframes contentFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Active/Selected menu item color */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #8B1E1E;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Blog content styling */
+        .blog-content {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+        }
+        
+        .blog-content h1, 
+        .blog-content h2, 
+        .blog-content h3, 
+        .blog-content h4, 
+        .blog-content h5, 
+        .blog-content h6 {
+            font-family: 'Playfair Display', serif;
+            color: #1e3a5f;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .blog-content ul, 
+        .blog-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-content blockquote {
+            border-left: 4px solid #1e3a5f;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .blog-content strong {
+            color: #1e3a5f;
+            font-weight: 600;
+        }
+        
+        .blog-content em {
+            font-style: italic;
+        }
+        
+        .blog-content a {
+            color: #1e3a5f;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-content a:hover {
+            color: #2c5282;
+        }
+        
+        .blog-content code {
+            background-color: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .blog-content pre {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        
+        .blog-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-content th, 
+        .blog-content td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .blog-content th {
+            background-color: #1e3a5f;
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-content hr {
+            border: none;
+            border-top: 2px solid #1e3a5f;
+            margin: 2rem 0;
+        }
+        
+        /* Sidebar blog items */
+        .sidebar-blog-item {
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-blog-item:hover {
+            transform: translateX(4px);
+        }
+        
+        /* Sticky Table of Contents */
+        .sticky-toc {
+            position: sticky;
+            top: 120px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e0 #f7fafc;
+        }
+        
+        .sticky-toc::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .sticky-toc::-webkit-scrollbar-track {
+            background: #f7fafc;
+            border-radius: 3px;
+        }
+        
+        .sticky-toc::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+        
+        .sticky-toc::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+        
+        /* Smooth scroll behavior for TOC links */
+        .toc-link {
+            scroll-behavior: smooth;
+        }
+        
+        /* Active TOC item styling */
+        .toc-link.active {
+            color: #1e3a5f;
+            border-left-color: #1e3a5f;
+            background-color: #f8f9fa;
+        }
+        
+        /* TOC list styling for better scroll */
+        #tableOfContents {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        
+        #tableOfContents::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        #tableOfContents::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        #tableOfContents::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+        
+        #tableOfContents::-webkit-scrollbar-thumb:hover {
+            background: #cbd5e0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <!-- Top Contact Bar inside Navbar -->
+        <div class="bg-primary text-white py-2">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <div class="flex flex-col md:flex-row items-center justify-between text-sm">
+                    <div class="flex items-center space-x-6">
+                        <a href="mailto:thindnotary@gmail.com" class="flex items-center space-x-2 hover:text-accent transition-colors font-body">
+                            <i class="fas fa-envelope"></i>
+                            <span>thindnotary@gmail.com</span>
+                        </a>
+                        <a href="tel:+16045009300" class="flex items-center space-x-2 hover:text-accent transition-colors font-body">
+                            <i class="fas fa-phone"></i>
+                            <span>1 604-500-9300</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Navbar -->
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="assets/images/logo.jpg" alt="Notary Public" class="h-14 md:h-16 w-auto">
+                    <span class="hidden md:block text-lg font-bold text-gray-800 font-heading">Sharan Thind Notary Public</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#home" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Home</a>
+                    <a href="about.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">About</a>
+                    <a href="services.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
+                    <a href="blog.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Blog</a>
+                    <a href="contact.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
+                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                        Book an Appointment
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2 relative w-10 h-10">
+                    <i class="fas fa-bars text-2xl absolute inset-0 flex items-center justify-center transition-all duration-300" id="hamburger-icon"></i>
+                    <i class="fas fa-times text-2xl absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 rotate-[-90deg]" id="close-icon"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <a href="index.html#home" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Home</a>
+                <a href="about.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">About</a>
+                <a href="services.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
+                <a href="blog.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
+                <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
+                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                    Book an Appointment
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="Breadcrumb" class="pt-24 pb-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <ol class="flex items-center space-x-2 text-sm text-gray-600" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="index.html" itemprop="item" class="hover:text-primary transition-colors">
+                        <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li class="text-gray-400">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="blog.html" itemprop="item" class="hover:text-primary transition-colors">
+                        <span itemprop="name">Blog</span>
+                    </a>
+                    <meta itemprop="position" content="2">
+                </li>
+                <li class="text-gray-400">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+                    <span itemprop="name" class="text-primary font-medium" id="breadcrumbTitle">Blog Post</span>
+                    <meta itemprop="position" content="3">
+                </li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-4 pb-16" role="main">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Left Side - Sidebar/Table of Contents -->
+                <aside class="lg:col-span-1" role="complementary" aria-label="Sidebar">
+                    <!-- Table of Contents Widget -->
+                    <nav class="bg-white rounded-lg shadow-lg p-6 sticky-toc" aria-label="Table of contents">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4" style="font-family: 'Playfair Display', serif;">Table of Contents</h3>
+                        <ul id="tableOfContents" class="space-y-2">
+                            <!-- Table of contents will be dynamically generated -->
+                            <li class="animate-pulse">
+                                <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                            </li>
+                            <li class="animate-pulse">
+                                <div class="h-4 bg-gray-200 rounded w-2/3 mb-2"></div>
+                            </li>
+                            <li class="animate-pulse">
+                                <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+                
+                <!-- Right Side - Blog Content -->
+                <div class="lg:col-span-2">
+                    <!-- Loading State -->
+                    <div id="loadingState" class="bg-white rounded-lg shadow-lg p-12 text-center" role="status" aria-live="polite">
+                        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+                        <p class="text-gray-600">Loading article...</p>
+                    </div>
+                    
+                    <!-- Blog Content -->
+                    <article id="blogContent" class="bg-white rounded-lg shadow-lg overflow-hidden hidden" itemscope itemtype="https://schema.org/BlogPosting">
+                        <meta itemprop="mainEntityOfPage" content="">
+                        
+                        <!-- Blog Header Image -->
+                        <header class="relative h-64 md:h-80">
+                            <img id="blogImage" src="" alt="" class="w-full h-full object-cover" itemprop="image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                                <span id="blogCategory" class="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-primary rounded-full text-sm font-semibold mb-3" itemprop="articleSection"></span>
+                                <h1 id="blogTitle" class="text-2xl md:text-4xl font-bold text-white mb-2" style="font-family: 'Playfair Display', serif;" itemprop="headline"></h1>
+                                <div class="flex items-center text-white/90 text-sm" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                    <i class="far fa-calendar mr-2" aria-hidden="true"></i>
+                                    <time id="blogDate" itemprop="datePublished" datetime=""></time>
+                                    <span class="mx-2">•</span>
+                                    <i class="far fa-user mr-2" aria-hidden="true"></i>
+                                    <span id="blogAuthor" itemprop="name"></span>
+                                    <span class="mx-2">•</span>
+                                    <i class="far fa-clock mr-2" aria-hidden="true"></i>
+                                    <span id="blogReadTime"></span>
+                                </div>
+                            </div>
+                        </header>
+                        
+                        <!-- Blog Body -->
+                        <div class="p-6 md:p-8">
+                            <!-- Excerpt -->
+                            <p id="blogExcerpt" class="text-lg text-gray-600 italic mb-6 pb-6 border-b border-gray-200" itemprop="description"></p>
+                            
+                            <!-- Main Content -->
+                            <div id="blogBody" class="blog-content text-gray-800 leading-relaxed" itemprop="articleBody">
+                                <!-- Content will be inserted here -->
+                            </div>
+                            
+                            <!-- Share Section -->
+                            <footer class="mt-8 pt-6 border-t border-gray-200">
+                                <h3 class="text-lg font-semibold mb-4">Share this article</h3>
+                                <div class="flex space-x-4" role="group" aria-label="Social media sharing">
+                                    <a href="#" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors" aria-label="Share on Facebook">
+                                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors" aria-label="Share on Twitter">
+                                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition-colors" aria-label="Share on LinkedIn">
+                                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-colors" aria-label="Share on WhatsApp">
+                                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </footer>
+                        </div>
+                    </article>
+                    
+                    <!-- Error/Not Found State -->
+                    <div id="notFoundState" class="bg-white rounded-lg shadow-lg p-12 text-center hidden" role="alert">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-exclamation-circle text-gray-400 text-4xl" aria-hidden="true"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Article Not Found</h2>
+                        <p class="text-gray-600 mb-6">The blog post you're looking for doesn't exist or has been removed.</p>
+                        <a href="blog.html" class="inline-flex items-center text-primary font-semibold hover:text-secondary transition-colors">
+                            <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to All Articles
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-16 md:h-[100px] w-auto">
+                        
+                    </div>
+                    <p class="text-gray-400">
+                        Professional and reliable notary services for all your legal documentation needs.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Home</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">About</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Services</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Blog</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Wills & Estate</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Power of Attorney</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Notarization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Statutory Declarations & Affidavits</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-phone mr-2"></i>1 604-500-9300</li>
+                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-envelope mr-2"></i>thindnotary@gmail.com</li>
+                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-map-marker-alt mr-2"></i>123 Main Street, Surrey</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Copyright - Left Side -->
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2024 Notary Public Services. All rights reserved.
+                    </p>
+                    
+                    <!-- Social Links - Right Side -->
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Firebase Blog Detail Loading
+        let db;
+        let currentBlogId = null;
+        
+        // Get blog ID from URL
+        function getBlogIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            currentBlogId = getBlogIdFromUrl();
+            
+            if (!currentBlogId) {
+                showNotFound();
+                return;
+            }
+            
+            // Wait for Firebase to be ready
+            if (window.firebaseDB) {
+                db = window.firebaseDB;
+                loadBlogDetail();
+            } else {
+                document.addEventListener('firebaseReady', function() {
+                    db = window.firebaseDB;
+                    loadBlogDetail();
+                });
+            }
+            
+            // Mobile menu functionality
+            setupMobileMenu();
+        });
+        
+        async function loadBlogDetail() {
+            try {
+                showLoading(true);
+                
+                const doc = await db.collection('blogs').doc(currentBlogId).get();
+                
+                if (!doc.exists) {
+                    showNotFound();
+                    return;
+                }
+                
+                const blog = doc.data();
+                renderBlogDetail(blog);
+                showLoading(false);
+            } catch (error) {
+                console.error('Error loading blog:', error);
+                showNotFound();
+            }
+        }
+        
+        function renderBlogDetail(blog) {
+            // Set meta title
+            document.title = `${blog.title} | Sharan Thind Notary Public`;
+            
+            // Set image
+            document.getElementById('blogImage').src = blog.image || 'assets/images/blog-placeholder.jpg';
+            document.getElementById('blogImage').alt = blog.title;
+            
+            // Set category
+            document.getElementById('blogCategory').textContent = blog.category;
+            
+            // Set title
+            document.getElementById('blogTitle').textContent = blog.title;
+            
+            // Set date
+            const date = blog.createdAt ? formatDate(blog.createdAt) : 'Recent';
+            document.getElementById('blogDate').textContent = date;
+            document.getElementById('blogDate').setAttribute('datetime', blog.createdAt?.toDate?.()?.toISOString() || new Date().toISOString());
+            
+            // Set author
+            document.getElementById('blogAuthor').textContent = blog.author || 'Sharan Thind';
+            
+            // Set read time
+            const readTime = Math.ceil((blog.content?.split(' ').length || 100) / 200) || 5;
+            document.getElementById('blogReadTime').textContent = `${readTime} min read`;
+            
+            // Set excerpt
+            document.getElementById('blogExcerpt').textContent = blog.excerpt || '';
+            
+            // Process content and generate table of contents
+            const processedContent = processBlogContent(blog.content);
+            document.getElementById('blogBody').innerHTML = processedContent.html;
+            
+            // Generate table of contents
+            generateTableOfContents(processedContent.headings);
+            
+            // Update SEO meta tags and structured data
+            updateSEOMetadata(blog);
+            
+            // Show content
+            document.getElementById('blogContent').classList.remove('hidden');
+        }
+        
+        function processBlogContent(content) {
+            if (!content) {
+                return { html: '<p>No content available.</p>', headings: [] };
+            }
+            
+            // If content contains HTML tags, use it directly
+            if (content.includes('<') && content.includes('>')) {
+                // Extract headings from HTML for table of contents
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = content;
+                
+                const headings = [];
+                const headingElements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                
+                headingElements.forEach((heading, index) => {
+                    const headingId = `heading-${index}`;
+                    heading.id = headingId;
+                    
+                    headings.push({
+                        id: headingId,
+                        text: heading.textContent,
+                        level: parseInt(heading.tagName.substring(1))
+                    });
+                });
+                
+                return { 
+                    html: tempDiv.innerHTML, 
+                    headings: headings 
+                };
+            }
+            
+            // Process plain text content (original logic)
+            const paragraphs = content.split('\n\n');
+            let html = '';
+            const headings = [];
+            let headingCounter = 0;
+            
+            paragraphs.forEach((paragraph, index) => {
+                const trimmed = paragraph.trim();
+                
+                // Check if it's a heading (starts with # or all caps with short length)
+                if (trimmed.startsWith('#')) {
+                    // Remove # and trim
+                    const headingText = trimmed.replace(/^#+\s*/, '').trim();
+                    const headingId = `heading-${headingCounter++}`;
+                    const headingLevel = trimmed.match(/^#+/)[0].length;
+                    
+                    // Add to headings array for table of contents
+                    headings.push({
+                        id: headingId,
+                        text: headingText,
+                        level: Math.min(headingLevel, 3) // Cap at h3
+                    });
+                    
+                    // Add heading HTML
+                    const headingTag = `h${Math.min(headingLevel + 1, 3)}`; // Start from h2
+                    html += `<${headingTag} id="${headingId}" class="font-bold text-primary mb-4 mt-6" style="font-family: 'Playfair Display', serif;">${headingText}</${headingTag}>`;
+                } else if (trimmed.length > 0) {
+                    // Regular paragraph
+                    // Check if it might be a heading (short, all caps, or ends with colon)
+                    if ((trimmed.length < 50 && trimmed === trimmed.toUpperCase() && !trimmed.includes('.')) ||
+                        (trimmed.length < 60 && trimmed.endsWith(':'))) {
+                        const headingId = `heading-${headingCounter++}`;
+                        
+                        headings.push({
+                            id: headingId,
+                            text: trimmed.replace(':', ''),
+                            level: 2
+                        });
+                        
+                        html += `<h2 id="${headingId}" class="font-bold text-primary mb-4 mt-6" style="font-family: 'Playfair Display', serif;">${trimmed}</h2>`;
+                    } else {
+                        // Regular paragraph
+                        html += `<p class="mb-4 leading-relaxed">${trimmed}</p>`;
+                    }
+                }
+            });
+            
+            return { html, headings };
+        }
+        
+        function generateTableOfContents(headings) {
+            const tocContainer = document.getElementById('tableOfContents');
+            
+            if (headings.length === 0) {
+                tocContainer.innerHTML = '<p class="text-gray-500 text-sm">No sections available</p>';
+                return;
+            }
+            
+            const tocHtml = headings.map((heading, index) => {
+                const indentClass = heading.level > 2 ? 'ml-4' : '';
+                const textSizeClass = heading.level > 2 ? 'text-sm' : 'text-sm';
+                
+                return `
+                    <li class="${indentClass}">
+                        <a href="#${heading.id}" 
+                           class="toc-link block text-gray-600 hover:text-primary transition-colors ${textSizeClass} py-1 border-l-2 border-transparent hover:border-primary pl-2"
+                           data-heading="${heading.id}">
+                            ${heading.text}
+                        </a>
+                    </li>
+                `;
+            }).join('');
+            
+            tocContainer.innerHTML = tocHtml;
+            
+            // Smooth scroll for table of contents links
+            tocContainer.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const offset = 100; // Account for fixed header
+                        const targetPosition = targetElement.offsetTop - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active state
+                        updateActiveTocItem(targetId);
+                    }
+                });
+            });
+            
+            // Set first item as active by default
+            if (headings.length > 0) {
+                updateActiveTocItem(headings[0].id);
+            }
+            
+            // Update active item on scroll
+            window.addEventListener('scroll', handleScrollForToc);
+        }
+        
+        function updateActiveTocItem(activeId) {
+            const tocContainer = document.getElementById('tableOfContents');
+            const allLinks = tocContainer.querySelectorAll('.toc-link');
+            
+            allLinks.forEach(link => {
+                link.classList.remove('active', 'text-primary', 'border-primary');
+                link.classList.add('text-gray-600', 'border-transparent');
+            });
+            
+            const activeLink = tocContainer.querySelector(`[data-heading="${activeId}"]`);
+            if (activeLink) {
+                activeLink.classList.remove('text-gray-600', 'border-transparent');
+                activeLink.classList.add('active', 'text-primary', 'border-primary');
+            }
+        }
+        
+        function handleScrollForToc() {
+            const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            const scrollPosition = window.scrollY + 150; // Offset for sticky header
+            
+            let currentHeading = null;
+            
+            headings.forEach(heading => {
+                if (heading.offsetTop <= scrollPosition) {
+                    currentHeading = heading.id;
+                }
+            });
+            
+            if (currentHeading) {
+                updateActiveTocItem(currentHeading);
+            }
+        }
+        
+        function updateSEOMetadata(blog) {
+            // Update page title
+            document.title = `${blog.title} | Sharan Thind Notary Public`;
+            
+            // Update meta description
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                metaDescription.content = blog.excerpt || blog.content?.substring(0, 160) || 'Read expert notary insights and legal tips from Sharan Thind Notary Public in Surrey, BC.';
+            }
+            
+            // Update canonical URL
+            const canonicalUrl = document.getElementById('canonicalUrl');
+            const currentUrl = window.location.href;
+            if (canonicalUrl) {
+                canonicalUrl.href = currentUrl;
+            }
+            
+            // Update Open Graph tags
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDescription = document.querySelector('meta[property="og:description"]');
+            const ogUrl = document.querySelector('meta[property="og:url"]');
+            const ogImage = document.querySelector('meta[property="og:image"]');
+            
+            if (ogTitle) ogTitle.content = blog.title;
+            if (ogDescription) ogDescription.content = blog.excerpt || blog.content?.substring(0, 160) || '';
+            if (ogUrl) ogUrl.content = currentUrl;
+            if (ogImage) ogImage.content = blog.image || 'assets/images/logo.jpg';
+            
+            // Update Twitter Card tags
+            const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+            const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+            const twitterImage = document.querySelector('meta[name="twitter:image"]');
+            
+            if (twitterTitle) twitterTitle.content = blog.title;
+            if (twitterDescription) twitterDescription.content = blog.excerpt || blog.content?.substring(0, 160) || '';
+            if (twitterImage) twitterImage.content = blog.image || 'assets/images/logo.jpg';
+            
+            // Update structured data
+            const blogSchema = document.getElementById('blogSchema');
+            if (blogSchema) {
+                const schemaData = {
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": blog.title,
+                    "description": blog.excerpt || blog.content?.substring(0, 160) || '',
+                    "image": blog.image || 'assets/images/logo.jpg',
+                    "author": {
+                        "@type": "Person",
+                        "name": blog.author || 'Sharan Thind'
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Sharan Thind Notary Public",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "assets/images/logo.jpg"
+                        }
+                    },
+                    "datePublished": blog.createdAt?.toDate?.()?.toISOString() || new Date().toISOString(),
+                    "dateModified": blog.updatedAt?.toDate?.()?.toISOString() || new Date().toISOString(),
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": currentUrl
+                    }
+                };
+                blogSchema.textContent = JSON.stringify(schemaData, null, 2);
+            }
+            
+            // Update breadcrumb title
+            const breadcrumbTitle = document.getElementById('breadcrumbTitle');
+            if (breadcrumbTitle) {
+                breadcrumbTitle.textContent = blog.title;
+            }
+            
+            // Update breadcrumb schema
+            const breadcrumbSchema = document.getElementById('breadcrumbSchema');
+            if (breadcrumbSchema) {
+                const breadcrumbData = {
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "index.html"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Blog",
+                            "item": "blog.html"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": blog.title
+                        }
+                    ]
+                };
+                breadcrumbSchema.textContent = JSON.stringify(breadcrumbData, null, 2);
+            }
+        }
+        
+        async function loadLatestBlogs() {
+            try {
+                const snapshot = await db.collection('blogs')
+                    .where('status', '==', 'published')
+                    .orderBy('createdAt', 'desc')
+                    .limit(5)
+                    .get();
+                
+                const latestBlogsContainer = document.getElementById('latestBlogs');
+                
+                // Filter out current blog
+                const blogs = snapshot.docs
+                    .filter(doc => doc.id !== currentBlogId)
+                    .slice(0, 4);
+                
+                if (blogs.length === 0) {
+                    latestBlogsContainer.innerHTML = '<p class="text-gray-500">No other articles available.</p>';
+                    return;
+                }
+                
+                latestBlogsContainer.innerHTML = blogs.map(doc => {
+                    const blog = doc.data();
+                    const date = blog.createdAt ? formatDate(blog.createdAt) : 'Recent';
+                    
+                    return `
+                        <a href="blog-detail.html?id=${doc.id}" class="sidebar-blog-item flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-all">
+                            <img src="${blog.image || 'assets/images/blog-placeholder.jpg'}" 
+                                 alt="${blog.title}" 
+                                 class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-sm line-clamp-2 mb-1">${blog.title}</h4>
+                                <p class="text-xs text-gray-500">${date}</p>
+                            </div>
+                        </a>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading latest blogs:', error);
+                document.getElementById('latestBlogs').innerHTML = '<p class="text-gray-500">Unable to load articles.</p>';
+            }
+        }
+        
+        function showLoading(show) {
+            const loadingState = document.getElementById('loadingState');
+            const blogContent = document.getElementById('blogContent');
+            const notFoundState = document.getElementById('notFoundState');
+            
+            if (show) {
+                loadingState.classList.remove('hidden');
+                blogContent.classList.add('hidden');
+                notFoundState.classList.add('hidden');
+            } else {
+                loadingState.classList.add('hidden');
+            }
+        }
+        
+        function showNotFound() {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('blogContent').classList.add('hidden');
+            document.getElementById('notFoundState').classList.remove('hidden');
+        }
+        
+        function formatDate(timestamp) {
+            if (!timestamp) return 'Recent';
+            
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerIcon.classList.toggle('opacity-0');
+                hamburgerIcon.classList.toggle('rotate-[-90deg]');
+                closeIcon.classList.toggle('opacity-0');
+                closeIcon.classList.toggle('rotate-[-90deg]');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('opacity-0');
+                    hamburgerIcon.classList.remove('rotate-[-90deg]');
+                    closeIcon.classList.add('opacity-0');
+                    closeIcon.classList.add('rotate-[-90deg]');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
