@@ -197,8 +197,8 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <a href="index.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Home</a>
-                <a href="index.html#about" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">About</a>
-                <a href="index.html#services" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
+                <a href="about.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">About</a>
+                <a href="services.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
                 <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
                 <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
@@ -209,7 +209,7 @@
     </nav>
 
     <!-- Blog Hero Section -->
-    <section class="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden pt-32">
+    <section class="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden pt-32">
         <!-- Background Image with Zoom Animation -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/hero-6.jpg" 
@@ -250,51 +250,93 @@
                 </p>
             </div>
             
-            <!-- Blog Grid - Dynamic Content -->
-            <div id="blogGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Blog posts will be loaded dynamically from Firestore -->
-            </div>
+            <!-- Two Column Layout -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Left Side: Main Blog Display (1 per row) -->
+                <div class="lg:col-span-2">
+                    <div id="blogGrid" class="space-y-8">
+                        <!-- Blog posts will be loaded dynamically from Firestore -->
+                    </div>
 
-            <!-- Loading State -->
-            <div id="loadingState" class="text-center py-12">
-                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-                <p class="mt-4 text-gray-600">Loading articles...</p>
-            </div>
+                    <!-- Loading State -->
+                    <div id="loadingState" class="text-center py-12">
+                        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                        <p class="mt-4 text-gray-600">Loading articles...</p>
+                    </div>
 
-            <!-- Empty State -->
-            <div id="emptyState" class="text-center py-12 hidden">
-                <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-4">
-                    <i class="fas fa-newspaper text-gray-400 text-3xl"></i>
+                    <!-- Empty State -->
+                    <div id="emptyState" class="text-center py-12 hidden">
+                        <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-4">
+                            <i class="fas fa-newspaper text-gray-400 text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">No articles yet</h3>
+                        <p class="text-gray-500">Check back soon for new content!</p>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center mt-12">
+                        <button id="loadMoreBtn" class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            Load More Articles
+                        </button>
+                    </div>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">No articles yet</h3>
-                <p class="text-gray-500">Check back soon for new content!</p>
-            </div>
 
-            <!-- Load More Button -->
-            <div class="text-center mt-12">
-                <button class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Load More Articles
-                </button>
+                <!-- Right Side: Search & Latest Blogs -->
+                <div class="lg:col-span-1 space-y-8">
+                    <!-- Search Widget -->
+                    <div class="bg-light-gray p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">
+                            <i class="fas fa-search mr-2"></i>Search Blog
+                        </h3>
+                        <div class="relative">
+                            <input type="text"
+                                   id="searchInput"
+                                   placeholder="Search articles..."
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+                            <button id="searchBtn" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-primary hover:text-secondary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Latest Blogs Widget -->
+                    <div class="bg-light-gray p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">
+                            <i class="fas fa-clock mr-2"></i>Latest Blogs
+                        </h3>
+                        <div id="latestBlogsList" class="space-y-4">
+                            <!-- Latest blogs will be loaded here -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-light-gray">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h2 class="text-3xl font-bold text-primary mb-4">Stay Updated</h2>
-                <p class="text-gray-600 mb-6">Subscribe to our newsletter for the latest notary tips and legal insights</p>
-                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input type="email" 
-                           placeholder="Enter your email" 
-                           class="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-primary">
-                    <button type="submit" 
-                            class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300">
-                        Subscribe
-                    </button>
-                </form>
-            </div>
+    <!-- Call to Action Section -->
+    <section class="py-12 md:py-16 lg:py-20 relative overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/CTA-img.jpg"
+                 alt="Professional Notary Services"
+                 class="w-full h-full object-cover">
+        </div>
+
+        <!-- Black Overlay -->
+        <div class="absolute inset-0 bg-black/70 z-10"></div>
+
+        <!-- Content -->
+        <div class="relative z-20 max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll text-white" style="font-family: 'Playfair Display', serif;">
+                Ready to Get Your Documents Notarized?
+            </h2>
+            <p class="text-xl mb-8 animate-on-scroll text-white">
+                Contact us today for professional and reliable notary services
+            </p>
+            <a href="contact.html"
+               class="inline-block bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg animate-on-scroll" style="font-family: 'Playfair Display', serif;">
+                Get Started Now
+            </a>
         </div>
     </section>
 
@@ -302,72 +344,70 @@
     <footer class="bg-dark text-white py-12">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-8">
-                <!-- Company Info -->
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <img src="assets/images/logo.jpg" alt="Sharan Thind Notary Public" class="h-12 w-auto rounded-full">
-                        <span class="text-lg font-bold" style="font-family: 'Playfair Display', serif;">Sharan Thind Notary</span>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-16 md:h-[100px] w-auto">
+                        
                     </div>
-                    <p class="text-gray-300 mb-4">Professional notary services in Surrey, BC. Trusted, certified, and reliable.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                    </div>
+                    <p class="text-gray-400">
+                        Professional and reliable notary services for all your legal documentation needs.
+                    </p>
                 </div>
-
-                <!-- Quick Links -->
+                
                 <div>
-                    <h3 class="text-lg font-semibold mb-4" style="font-family: 'Playfair Display', serif;">Quick Links</h3>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="index.html#home" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">About</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
-                        <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">About</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Services</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Blog</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Contact</a></li>
                     </ul>
                 </div>
-
-                <!-- Services -->
+                
                 <div>
-                    <h3 class="text-lg font-semibold mb-4" style="font-family: 'Playfair Display', serif;">Services</h3>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
                     <ul class="space-y-2">
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Letter of Invitation</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Powers of Attorney</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Witness of Signature</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Statutory Declarations & Affidavits</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-white transition-colors">Real Estate</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Wills & Estate</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Power of Attorney</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Notarization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Statutory Declarations & Affidavits</a></li>
                     </ul>
                 </div>
-
-                <!-- Contact -->
+                
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-envelope text-primary"></i>
-                            <span class="text-gray-300">thindnotary@gmail.com</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-phone text-primary"></i>
-                            <span class="text-gray-300">1 604-500-9300</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-map-marker-alt text-primary"></i>
-                            <span class="text-gray-300">Surrey, BC, Canada</span>
-                        </div>
-                    </div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-phone mr-2"></i>1 604-500-9300</li>
+                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-envelope mr-2"></i>thindnotary@gmail.com</li>
+                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-map-marker-alt mr-2"></i>123 Main Street, Surrey</li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2026 Sharan Thind Notary Public. All Rights Reserved.</p>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Copyright - Left Side -->
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2024 Notary Public Services. All rights reserved.
+                    </p>
+                    
+                    <!-- Social Links - Right Side -->
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -391,6 +431,10 @@
             }
         });
         
+        let allBlogs = [];
+        let displayedBlogs = 0;
+        const BLOGS_PER_PAGE = 3;
+
         async function loadBlogs() {
             try {
                 const blogGrid = document.getElementById('blogGrid');
@@ -402,11 +446,11 @@
                 blogGrid.classList.add('hidden');
                 emptyState.classList.add('hidden');
                 
-                // Fetch all blogs from Firestore (simpler query without composite index)
+                // Fetch all blogs from Firestore
                 const snapshot = await db.collection('blogs').get();
                 
-                // Filter published blogs client-side
-                const publishedBlogs = snapshot.docs
+                // Filter and sort published blogs
+                allBlogs = snapshot.docs
                     .filter(doc => doc.data().status === 'published')
                     .sort((a, b) => {
                         const dateA = a.data().createdAt?.toDate?.() || new Date(a.data().createdAt);
@@ -417,20 +461,22 @@
                 // Hide loading
                 loadingState.classList.add('hidden');
                 
-                if (publishedBlogs.length === 0) {
+                if (allBlogs.length === 0) {
                     emptyState.classList.remove('hidden');
                     return;
                 }
                 
-                // Render blogs
-                blogGrid.innerHTML = publishedBlogs.map(doc => {
-                    const blog = doc.data();
-                    return createBlogCard(doc.id, blog);
-                }).join('');
+                // Render initial blogs
+                renderBlogs(allBlogs.slice(0, BLOGS_PER_PAGE));
+                displayedBlogs = BLOGS_PER_PAGE;
                 
-                blogGrid.classList.remove('hidden');
+                // Update Load More button visibility
+                updateLoadMoreButton();
                 
-                // Re-initialize scroll animations for new elements
+                // Render sidebar widgets
+                renderLatestBlogs(allBlogs.slice(0, 3));
+                
+                // Re-initialize scroll animations
                 initScrollAnimations();
                 
             } catch (error) {
@@ -439,12 +485,113 @@
                 document.getElementById('emptyState').classList.remove('hidden');
             }
         }
-        
-        function createBlogCard(id, blog) {
+
+        function renderBlogs(blogs) {
+            const blogGrid = document.getElementById('blogGrid');
+            
+            if (blogs.length === 0) {
+                blogGrid.innerHTML = `
+                    <div class="text-center py-8">
+                        <p class="text-gray-500">No blogs found matching your search.</p>
+                    </div>
+                `;
+                blogGrid.classList.remove('hidden');
+                return;
+            }
+            
+            blogGrid.innerHTML = blogs.map(doc => {
+                const blog = doc.data ? doc.data() : doc;
+                const id = doc.id || blog.id;
+                return createHorizontalBlogCard(id, blog);
+            }).join('');
+            
+            blogGrid.classList.remove('hidden');
+            initScrollAnimations();
+        }
+
+        function updateLoadMoreButton() {
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (displayedBlogs >= allBlogs.length) {
+                loadMoreBtn.classList.add('hidden');
+            } else {
+                loadMoreBtn.classList.remove('hidden');
+            }
+        }
+
+        function renderLatestBlogs(blogs) {
+            const latestBlogsList = document.getElementById('latestBlogsList');
+            
+            latestBlogsList.innerHTML = blogs.map(doc => {
+                const blog = doc.data ? doc.data() : doc;
+                const id = doc.id || blog.id;
+                return createLatestBlogItem(id, blog);
+            }).join('');
+        }
+
+        function renderCategories(blogs) {
+            const categoriesList = document.getElementById('categoriesList');
+            
+            // Extract unique categories
+            const categories = [...new Set(blogs.map(doc => {
+                const blog = doc.data ? doc.data() : doc;
+                return blog.category;
+            }).filter(cat => cat))];
+            
+            if (categories.length === 0) {
+                categoriesList.innerHTML = '<p class="text-gray-500 text-sm">No categories available</p>';
+                return;
+            }
+            
+            categoriesList.innerHTML = categories.map(cat => `
+                <button onclick="filterByCategory('${cat}')" 
+                        class="category-tag px-3 py-1 bg-white text-primary text-sm rounded-full border border-primary/20 hover:bg-primary hover:text-white transition-all">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function createLatestBlogItem(id, blog) {
             let date = 'Recent';
             if (blog.createdAt) {
                 try {
-                    // Handle Firestore timestamp
+                    if (blog.createdAt.toDate) {
+                        date = blog.createdAt.toDate().toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric'
+                        });
+                    } else if (typeof blog.createdAt === 'string') {
+                        date = new Date(blog.createdAt).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric'
+                        });
+                    }
+                } catch (e) {
+                    date = 'Recent';
+                }
+            }
+            
+            return `
+                <a href="blog-detail.html?id=${id}" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white transition-all group">
+                    <img src="${blog.image || 'assets/images/blog-placeholder.jpg'}" 
+                         alt="${blog.title}" 
+                         class="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+                         onerror="this.src='assets/images/blog-placeholder.jpg'">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-semibold text-primary group-hover:text-secondary transition-colors line-clamp-2">
+                            ${blog.title}
+                        </h4>
+                        <p class="text-xs text-gray-500 mt-1">
+                            <i class="far fa-calendar mr-1"></i>${date}
+                        </p>
+                    </div>
+                </a>
+            `;
+        }
+        
+        function createHorizontalBlogCard(id, blog) {
+            let date = 'Recent';
+            if (blog.createdAt) {
+                try {
                     if (blog.createdAt.toDate) {
                         date = blog.createdAt.toDate().toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -452,7 +599,6 @@
                             day: 'numeric'
                         });
                     } else if (typeof blog.createdAt === 'string') {
-                        // Handle ISO string date
                         date = new Date(blog.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
@@ -460,7 +606,6 @@
                         });
                     }
                 } catch (e) {
-                    console.error('Error parsing date:', e);
                     date = 'Recent';
                 }
             }
@@ -468,31 +613,33 @@
             const readTime = Math.ceil((blog.content?.split(' ').length || 100) / 200) || 5;
             
             return `
-                <article class="blog-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll">
-                    <div class="relative">
-                        <img src="${blog.image || 'assets/images/blog-placeholder.jpg'}" 
-                             alt="${blog.title}" 
-                             class="w-full h-48 object-cover"
+                <article class="blog-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll flex flex-col md:flex-row">
+                    <div class="relative md:w-2/5 flex-shrink-0">
+                        <img src="${blog.image || 'assets/images/blog-placeholder.jpg'}"
+                             alt="${blog.title}"
+                             class="w-full h-36 md:h-full object-cover min-h-[140px]"
                              onerror="this.src='assets/images/blog-placeholder.jpg'">
-                        <div class="absolute top-4 left-4">
-                            <span class="blog-category bg-white/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full text-xs font-semibold">
-                                ${blog.category}
+                        <div class="absolute top-3 left-3">
+                            <span class="blog-category bg-white/90 backdrop-blur-sm text-primary px-2 py-1 rounded-full text-xs font-semibold">
+                                ${blog.category || 'General'}
                             </span>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="far fa-calendar mr-2"></i>
-                            <span>${date}</span>
-                            <span class="mx-2">•</span>
-                            <span>${readTime} min read</span>
+                    <div class="p-5 md:w-3/5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <i class="far fa-calendar mr-2"></i>
+                                <span>${date}</span>
+                                <span class="mx-2">•</span>
+                                <span>${readTime} min read</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-primary mb-2" style="font-family: 'Playfair Display', serif;">${blog.title}</h3>
+                            <p class="text-gray-600 mb-3 line-clamp-2 text-sm">${blog.excerpt || blog.content?.substring(0, 120) + '...'}</p>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-3">${blog.title}</h3>
-                        <p class="text-gray-600 mb-4">${blog.excerpt || blog.content?.substring(0, 150) + '...'}</p>
-                        <a href="blog-detail.html?id=${id}" 
-                           class="inline-flex items-center text-primary font-semibold hover:text-secondary transition-colors">
-                                Read More <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
+                        <a href="blog-detail.html?id=${id}"
+                           class="inline-flex items-center text-primary font-semibold hover:text-secondary transition-colors text-sm">
+                            Read More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </article>
             `;
@@ -501,6 +648,83 @@
         function showBlogDetail(blogId) {
             // Navigate to blog detail page
             window.location.href = `blog-detail.html?id=${blogId}`;
+        }
+
+        // Search functionality
+        function searchBlogs(query) {
+            if (!query.trim()) {
+                renderBlogs(allBlogs.slice(0, displayedBlogs));
+                return;
+            }
+            
+            const searchTerm = query.toLowerCase();
+            const filtered = allBlogs.filter(doc => {
+                const blog = doc.data ? doc.data() : doc;
+                return blog.title?.toLowerCase().includes(searchTerm) ||
+                       blog.excerpt?.toLowerCase().includes(searchTerm) ||
+                       blog.content?.toLowerCase().includes(searchTerm) ||
+                       blog.category?.toLowerCase().includes(searchTerm);
+            });
+            
+            renderBlogs(filtered);
+            
+            // Hide load more button during search
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (filtered.length < allBlogs.length) {
+                loadMoreBtn.classList.add('hidden');
+            }
+        }
+
+        // Filter by category
+        function filterByCategory(category) {
+            const filtered = allBlogs.filter(doc => {
+                const blog = doc.data ? doc.data() : doc;
+                return blog.category === category;
+            });
+            
+            renderBlogs(filtered);
+            
+            // Hide load more button during filter
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            loadMoreBtn.classList.add('hidden');
+            
+            // Scroll to blog section
+            document.getElementById('blogGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Load more blogs with animation
+        function loadMoreBlogs() {
+            const currentCount = displayedBlogs;
+            const newCount = Math.min(currentCount + BLOGS_PER_PAGE, allBlogs.length);
+            const newBlogs = allBlogs.slice(currentCount, newCount);
+
+            if (newBlogs.length === 0) return;
+
+            const blogGrid = document.getElementById('blogGrid');
+
+            // Append new blogs with animation class
+            newBlogs.forEach((doc, index) => {
+                const blog = doc.data ? doc.data() : doc;
+                const id = doc.id || blog.id;
+                const cardHTML = createHorizontalBlogCard(id, blog);
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = cardHTML;
+                const newCard = tempDiv.firstElementChild;
+
+                // Add animation delay based on index
+                newCard.style.animationDelay = `${index * 0.15}s`;
+                newCard.classList.add('animate-fade-in-up');
+
+                blogGrid.appendChild(newCard);
+            });
+
+            displayedBlogs = newCount;
+            updateLoadMoreButton();
+
+            // Re-initialize scroll animations for new elements
+            setTimeout(() => {
+                initScrollAnimations();
+            }, 100);
         }
         
         function initScrollAnimations() {
@@ -526,6 +750,34 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize scroll animations
             initScrollAnimations();
+            
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    searchBlogs(e.target.value);
+                });
+                
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        searchBlogs(e.target.value);
+                    }
+                });
+            }
+            
+            if (searchBtn) {
+                searchBtn.addEventListener('click', () => {
+                    searchBlogs(searchInput.value);
+                });
+            }
+            
+            // Load more button
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', loadMoreBlogs);
+            }
             
             // Mobile menu functionality
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');

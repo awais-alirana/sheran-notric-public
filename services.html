@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -168,7 +169,7 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html#home" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Home</a>
+                    <a href="index.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Home</a>
                     <a href="about.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">About</a>
                     <a href="services.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Services</a>
                     <a href="blog.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
@@ -187,7 +188,7 @@
             
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
-                <a href="index.html#home" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Home</a>
+                <a href="index.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Home</a>
                 <a href="about.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">About</a>
                 <a href="services.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Blog</a>
@@ -199,8 +200,36 @@
         </div>
     </nav>
 
+    <!-- Services Hero Section -->
+    <section class="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden pt-32">
+        <!-- Background Image with Zoom Animation -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/hero-1.jpg"
+                 alt="Our Services"
+                 class="w-full h-full object-cover animate-zoom">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/80"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <div class="animate-fade-in-up">
+                <span class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6 border border-white/20">
+                    <i class="fas fa-briefcase mr-2"></i>Professional Solutions
+                </span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s; font-family: 'Playfair Display', serif;">
+                Our Services
+            </h1>
+
+            <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+                Comprehensive notary services tailored to meet your legal documentation needs
+            </p>
+        </div>
+    </section>
+
     <!-- Services Section -->
-    <section class="py-16 bg-[#F5F5F5] mt-20">
+    <section class="py-16 bg-[#F5F5F5]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12 animate-on-scroll">
                 <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4 inline-block">
@@ -286,70 +315,325 @@
                         <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Obtain accurate and verified proof of identity documents through our meticulous notarization processes.</p>
                     </div>
                 </div>
+
+                <!-- Service Card 7 - Travel Abroad Letter for Minors -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-plane text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Travel Abroad Letter for Minors</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Ensure a smooth travel experience for your minors with our professionally crafted travel consent letters.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 8 - Authentication of International Documents -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-globe text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Authentication of International Documents</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Our services extend to the authentication of international documents, giving them the legal recognition they need.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 9 - Name Changes -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-signature text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Name Changes</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Whether it's a legal name change or other crucial documentation, our notaries ensure the validity of name change applications.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 10 - Passport Application Documentation -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-passport text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Passport Application Documentation</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Trust our expertise in preparing passport application documents, helping you avoid potential hurdles.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 11 - Wills and Estate Planning -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-file-alt text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Wills and Estate Planning</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Safeguard your family's future with our comprehensive wills and estate planning services, tailored to your unique circumstances.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 12 - Representation Agreements -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-handshake text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Representation Agreements</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Navigate complex representation agreements easily, knowing our notaries are here to guide you.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 13 - Health and Healthcare Directives -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-heartbeat text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Health and Healthcare Directives</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Ensure your healthcare preferences are legally documented with our expertly crafted directives.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 14 - Family Transfers -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-users text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Family Transfers</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Simplify family property transfers with our guidance, ensuring a seamless transfer of ownership.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 15 - Mortgages and Refinancing -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-money-check-alt text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Mortgages and Refinancing</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Our services cover mortgages and refinancing, helping you secure your real estate investments.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 16 - Commercial and Residential Leases -->
+                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-building text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Commercial and Residential Leases</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">We offer assistance in drafting and reviewing leases, protecting your interests as a landlord or tenant.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 17 - Restrictive Covenants and Builder's Liens -->
+                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                    <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
+                    <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
+                            <i class="fas fa-hard-hat text-white text-2xl group-hover:text-primary transition-all duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary mb-3 group-hover:text-white transition-all duration-300">Restrictive Covenants and Builder's Liens</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200 transition-all duration-300">Navigate property-related legalities confidently with our guidance on restrictive covenants and builder's liens.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Process Section -->
     <section class="py-16 bg-light-gray">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-12 animate-on-scroll">
+                <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4 inline-block">
+                    <i class="fas fa-tasks mr-2"></i>How It Works
+                </span>
                 <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Our Process</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     Simple, transparent, and efficient process for all your notary needs.
                 </p>
             </div>
-            
-            <div class="grid md:grid-cols-4 gap-8">
+
+            <!-- Timeline -->
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 md:-translate-x-1/2"></div>
+
                 <!-- Step 1 -->
-                <div class="text-center animate-on-scroll">
-                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                        1
+                <div class="relative flex items-start mb-8 animate-on-scroll">
+                    <div class="flex-1 md:text-right md:pr-12 hidden md:block">
+                        <h3 class="text-xl font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Book Appointment</h3>
+                        <p class="text-gray-600">Schedule a convenient time online or call us directly. We offer flexible scheduling including evenings and weekends.</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Consultation</h3>
-                    <p class="text-gray-600 text-sm">
-                        Discuss your requirements and document needs with our experts.
-                    </p>
+                    <div class="relative flex items-center justify-center w-16 h-16 bg-primary text-white rounded-full flex-shrink-0 z-10 shadow-lg">
+                        <i class="fas fa-calendar-check text-xl"></i>
+                    </div>
+                    <div class="flex-1 pl-8 md:hidden">
+                        <h3 class="text-xl font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Book Appointment</h3>
+                        <p class="text-gray-600">Schedule a convenient time online or call us directly. We offer flexible scheduling including evenings and weekends.</p>
+                    </div>
+                    <div class="flex-1 pl-12 md:pl-12 hidden md:block">
+                        <span class="text-5xl font-bold text-primary/10">01</span>
+                    </div>
                 </div>
-                
+
                 <!-- Step 2 -->
-                <div class="text-center animate-on-scroll">
-                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                        2
+                <div class="relative flex items-start mb-8 animate-on-scroll">
+                    <div class="flex-1 pr-12 text-right hidden md:block">
+                        <span class="text-5xl font-bold text-primary/10">02</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Document Review</h3>
-                    <p class="text-gray-600 text-sm">
-                        We review and prepare your documents for notarization.
-                    </p>
+                    <div class="relative flex items-center justify-center w-16 h-16 bg-primary text-white rounded-full flex-shrink-0 z-10 shadow-lg">
+                        <i class="fas fa-file-alt text-xl"></i>
+                    </div>
+                    <div class="flex-1 pl-8 md:pl-12">
+                        <h3 class="text-xl font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Prepare Documents</h3>
+                        <p class="text-gray-600">Gather your documents and valid ID. We'll review everything beforehand to ensure a smooth notarization process.</p>
+                    </div>
                 </div>
-                
+
                 <!-- Step 3 -->
-                <div class="text-center animate-on-scroll">
-                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                        3
+                <div class="relative flex items-start mb-8 animate-on-scroll">
+                    <div class="flex-1 md:text-right md:pr-12 hidden md:block">
+                        <h3 class="text-xl font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Meet & Notarize</h3>
+                        <p class="text-gray-600">Visit our office or we'll come to you. We verify identity, witness signatures, and complete the notarization professionally.</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Notarization</h3>
-                    <p class="text-gray-600 text-sm">
-                        Professional notarization with proper verification and signing.
-                    </p>
+                    <div class="relative flex items-center justify-center w-16 h-16 bg-primary text-white rounded-full flex-shrink-0 z-10 shadow-lg">
+                        <i class="fas fa-stamp text-xl"></i>
+                    </div>
+                    <div class="flex-1 pl-8 md:hidden">
+                        <h3 class="text-xl font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Meet & Notarize</h3>
+                        <p class="text-gray-600">Visit our office or we'll come to you. We verify identity, witness signatures, and complete the notarization professionally.</p>
+                    </div>
+                    <div class="flex-1 pl-12 md:pl-12 hidden md:block">
+                        <span class="text-5xl font-bold text-primary/10">03</span>
+                    </div>
                 </div>
-                
+
                 <!-- Step 4 -->
-                <div class="text-center animate-on-scroll">
-                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                        4
+                <div class="relative flex items-start animate-on-scroll">
+                    <div class="flex-1 pr-12 text-right hidden md:block">
+                        <span class="text-5xl font-bold text-primary/10">04</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Delivery</h3>
-                    <p class="text-gray-600 text-sm">
-                        Receive your notarized documents ready for use.
-                    </p>
+                    <div class="relative flex items-center justify-center w-16 h-16 bg-primary text-white rounded-full flex-shrink-0 z-10 shadow-lg">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div class="flex-1 pl-8 md:pl-12">
+                        <h3 class="text-xl font-semibold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Receive Documents</h3>
+                        <p class="text-gray-600">Get your properly notarized documents immediately. We can also provide certified copies or assist with additional authentication if needed.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Left Side: Title & Description -->
+                <div class="animate-on-scroll self-start">
+                    <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4 inline-block">
+                        <i class="fas fa-question-circle mr-2"></i>Got Questions?
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Frequently Asked Questions</h2>
+                    <p class="text-lg text-gray-600">
+                        Find answers to common questions about our notary services. Can't find what you're looking for? Feel free to contact us directly.
+                    </p>
+                </div>
+
+                <!-- Right Side: FAQs -->
+                <div class="space-y-4">
+                    <!-- FAQ 1 (Open by default) -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden animate-on-scroll">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between bg-light-gray hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <span class="font-semibold text-primary text-lg pr-4" style="font-family: 'Playfair Display', serif;">What documents do I need to bring for notarization?</span>
+                            <i class="fas fa-chevron-down text-primary transition-transform duration-300 flex-shrink-0" style="transform: rotate(180deg);"></i>
+                        </button>
+                        <div class="faq-content px-6 py-4 bg-white">
+                            <p class="text-gray-600">You need to bring a valid government-issued photo ID (passport, driver's license, or BC ID), the document requiring notarization, and any supporting documents related to the transaction. All parties signing the document must be present.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden animate-on-scroll">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between bg-light-gray hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <span class="font-semibold text-primary text-lg pr-4" style="font-family: 'Playfair Display', serif;">How much do your notary services cost?</span>
+                            <i class="fas fa-chevron-down text-primary transition-transform duration-300 flex-shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">Our fees vary depending on the type of service. Standard notarizations start at $45, while complex documents like real estate transactions or wills may cost more. We provide transparent pricing upfront during your consultation.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden animate-on-scroll">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between bg-light-gray hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <span class="font-semibold text-primary text-lg pr-4" style="font-family: 'Playfair Display', serif;">Do you offer mobile notary services?</span>
+                            <i class="fas fa-chevron-down text-primary transition-transform duration-300 flex-shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">Yes! We offer mobile notary services throughout Surrey and surrounding areas. We can meet you at your home, office, hospital, or any convenient location. Additional travel fees may apply depending on the distance.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden animate-on-scroll">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between bg-light-gray hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <span class="font-semibold text-primary text-lg pr-4" style="font-family: 'Playfair Display', serif;">How long does the notarization process take?</span>
+                            <i class="fas fa-chevron-down text-primary transition-transform duration-300 flex-shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">Simple notarizations typically take 15-30 minutes. More complex documents like real estate transactions or estate planning may take 30-60 minutes. We recommend booking an appointment to ensure adequate time for your specific needs.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item border border-gray-200 rounded-xl overflow-hidden animate-on-scroll">
+                        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between bg-light-gray hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <span class="font-semibold text-primary text-lg pr-4" style="font-family: 'Playfair Display', serif;">Can I get a document notarized without the other party present?</span>
+                            <i class="fas fa-chevron-down text-primary transition-transform duration-300 flex-shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">Each signer must appear before the notary individually to sign and show ID. We cannot notarize signatures for people who are not present. If multiple parties need to sign, they can visit at different times or we can arrange mobile services.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const content = faqItem.querySelector('.faq-content');
+            const icon = button.querySelector('i');
+
+            // Close other open FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-content').classList.add('hidden');
+                    item.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Toggle current FAQ
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+    </script>
+
     <!-- CTA Section -->
-    <section class="py-16 md:py-24 relative overflow-hidden">
+    <section class="py-12 md:py-16 lg:py-20 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/CTA-img.jpg" 

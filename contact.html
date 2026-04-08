@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -177,52 +178,113 @@
     </nav>
 
     <!-- Contact Hero Section -->
-    <section class="relative h-[300px] md:h-[400px] lg:h-[450px] bg-primary overflow-hidden flex items-center justify-center pt-16">
-        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
-            <!-- Title -->
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4 animate-fade-in-up" style="font-family: 'Playfair Display', serif;">
+    <section class="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden pt-32">
+        <!-- Background Image with Zoom Animation -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/hero-3.jpg"
+                 alt="Contact Us"
+                 class="w-full h-full object-cover animate-zoom">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/80"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <div class="animate-fade-in-up">
+                <span class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6 border border-white/20">
+                    <i class="fas fa-headset mr-2"></i>Get in Touch
+                </span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s; font-family: 'Playfair Display', serif;">
                 Contact Us
             </h1>
-            <div class="w-24 md:w-28 h-1 bg-white/40 mx-auto rounded-full mb-4 md:mb-6 animate-fade-in-up"></div>
-            
-            <!-- Breadcrumb -->
-            <nav class="animate-fade-in-up">
-                <ol class="flex items-center justify-center space-x-2 text-xs md:text-sm text-white/70">
-                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
-                    <li><i class="fas fa-chevron-right text-xs"></i></li>
-                    <li class="text-white">Contact Us</li>
-                </ol>
-            </nav>
+
+            <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+                Reach out to us for professional notary services tailored to your needs
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Info Cards Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Phone Card -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Phone</h3>
+                    <p class="text-gray-500 text-sm mb-3">Mon-Fri, 9 AM - 5 PM</p>
+                    <a href="tel:+16045009300" class="text-primary font-semibold text-lg hover:underline">
+                        1 604-500-9300
+                    </a>
+                </div>
+
+                <!-- Email Card -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Email</h3>
+                    <p class="text-gray-500 text-sm mb-3">We'll respond within 24 hours</p>
+                    <a href="mailto:thindnotary@gmail.com" class="text-primary font-semibold text-lg hover:underline">
+                        thindnotary@gmail.com
+                    </a>
+                </div>
+
+                <!-- Address Card -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2" style="font-family: 'Playfair Display', serif;">Address</h3>
+                    <p class="text-gray-500 text-sm mb-3">Surrey, British Columbia</p>
+                    <p class="text-primary font-semibold text-lg">
+                        12823 96 Avenue, Surrey, BC
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Contact Form & Map Section -->
     <section class="py-16 bg-light-gray">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg animate-on-scroll">
-                    <div class="mb-8">
-                        <h2 class="text-3xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Send Us a Message</h2>
-                        <p class="text-gray-600">
-                            Fill out the form below and we'll get back to you as soon as possible.
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- Left Side: Title, Description & Assistance Card -->
+                <div class="space-y-8">
+                    <div class="animate-on-scroll">
+                        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Send Us a Message</h2>
+                        <p class="text-gray-600 text-lg">
+                            Fill out the form and we'll get back to you as soon as possible. We're here to help with all your notary needs.
                         </p>
                     </div>
 
+                    <!-- Quick Contact -->
+                    <div class="bg-primary text-white p-8 rounded-lg shadow-lg animate-on-scroll">
+                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">
+                            Need Immediate Assistance?
+                        </h3>
+                        <p class="text-white/90 mb-6">
+                            For urgent notary services, please call us directly. We offer mobile services for your convenience.
+                        </p>
+                        <a href="tel:+16045009300" 
+                           class="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Side: Contact Form -->
+                <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg animate-on-scroll">
                     <form id="contactForm" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2">First Name *</label>
-                                <input type="text" name="firstName" required
-                                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg transition-all"
-                                    placeholder="Your first name">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2">Last Name *</label>
-                                <input type="text" name="lastName" required
-                                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg transition-all"
-                                    placeholder="Your last name">
-                            </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Full Name *</label>
+                            <input type="text" name="fullName" required
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg transition-all"
+                                placeholder="Your full name">
                         </div>
 
                         <div>
@@ -230,13 +292,6 @@
                             <input type="email" name="email" required
                                 class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg transition-all"
                                 placeholder="your.email@example.com">
-                        </div>
-
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
-                            <input type="tel" name="phone"
-                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg transition-all"
-                                placeholder="Your phone number">
                         </div>
 
                         <div>
@@ -275,51 +330,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Map & Office Info -->
-                <div class="space-y-8">
-                    <!-- Office Hours -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg animate-on-scroll">
-                        <h3 class="text-2xl font-bold text-primary mb-6" style="font-family: 'Playfair Display', serif;">
-                            <i class="fas fa-clock mr-3 text-primary"></i>Office Hours
-                        </h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between py-2 border-b border-gray-100">
-                                <span class="text-gray-600">Monday - Friday</span>
-                                <span class="font-semibold text-gray-800">9:00 AM - 5:00 PM</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-100">
-                                <span class="text-gray-600">Saturday</span>
-                                <span class="font-semibold text-gray-800">10:00 AM - 2:00 PM</span>
-                            </div>
-                            <div class="flex justify-between py-2">
-                                <span class="text-gray-600">Sunday</span>
-                                <span class="font-semibold text-red-500">Closed</span>
-                            </div>
-                        </div>
-                        <div class="mt-6 p-4 bg-primary/5 rounded-lg">
-                            <p class="text-sm text-gray-600">
-                                <i class="fas fa-info-circle text-primary mr-2"></i>
-                                Mobile notary services available outside regular hours by appointment.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Quick Contact -->
-                    <div class="bg-primary text-white p-8 rounded-lg shadow-lg animate-on-scroll">
-                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">
-                            Need Immediate Assistance?
-                        </h3>
-                        <p class="text-white/90 mb-6">
-                            For urgent notary services, please call us directly. We offer mobile services for your convenience.
-                        </p>
-                        <a href="tel:+16045009300" 
-                           class="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all">
-                            <i class="fas fa-phone-alt mr-2"></i>
-                            Call Now
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -355,7 +365,7 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Home</a></li>
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Home</a></li>
                         <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">About</a></li>
                         <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Services</a></li>
                         <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Blog</a></li>
@@ -366,10 +376,10 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Services</h4>
                     <ul class="space-y-2">
-                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Wills & Estate</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Power of Attorney</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Notarization</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Mobile Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Wills & Estate</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Power of Attorney</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Notarization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" style="font-family: 'Playfair Display', serif;">Statutory Declarations & Affidavits</a></li>
                     </ul>
                 </div>
                 
@@ -378,7 +388,7 @@
                     <ul class="space-y-2 text-gray-400">
                         <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-phone mr-2"></i>1 604-500-9300</li>
                         <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-envelope mr-2"></i>thindnotary@gmail.com</li>
-                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-map-marker-alt mr-2"></i>12823 96 Avenue, Surrey, BC</li>
+                        <li style="font-family: 'Playfair Display', serif;"><i class="fas fa-map-marker-alt mr-2"></i>123 Main Street, Surrey</li>
                     </ul>
                 </div>
             </div>
@@ -454,16 +464,61 @@
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show success message
-            document.getElementById('successMessage').classList.remove('hidden');
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            const successMessage = document.getElementById('successMessage');
             
-            // Reset form
-            this.reset();
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
             
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                document.getElementById('successMessage').classList.add('hidden');
-            }, 5000);
+            // Collect form data
+            const formData = new FormData(form);
+            
+            // Send data to PHP
+            fetch('contact-form.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    successMessage.innerHTML = '<div class="flex items-center"><i class="fas fa-check-circle mr-2"></i><span>' + data.message + '</span></div>';
+                    successMessage.className = 'mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg';
+                    successMessage.classList.remove('hidden');
+                    
+                    // Reset form
+                    form.reset();
+                } else {
+                    // Show error message
+                    successMessage.innerHTML = '<div class="flex items-center"><i class="fas fa-exclamation-circle mr-2"></i><span>' + data.message + '</span></div>';
+                    successMessage.className = 'mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg';
+                    successMessage.classList.remove('hidden');
+                }
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 5000);
+            })
+            .catch(error => {
+                // Show error message
+                successMessage.innerHTML = '<div class="flex items-center"><i class="fas fa-exclamation-circle mr-2"></i><span>Sorry, there was an error sending your message. Please try again later.</span></div>';
+                successMessage.className = 'mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg';
+                successMessage.classList.remove('hidden');
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 5000);
+            })
+            .finally(() => {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            });
         });
     </script>
 </body>
