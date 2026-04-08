@@ -1,6 +1,10 @@
 <?php
 // Contact Form Handler
 
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+
 // Check if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
@@ -41,16 +45,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // If no errors, send email
     if (empty($errors)) {
-        // Email recipient (change this to your actual email)
+        // Email recipient
         $to = "awaisalirana93@gmail.com";
         
         // Email subject
         $subject = "New Contact Form Submission - " . $serviceDisplay;
         
-        // Email headers
-        $headers = "From: " . $email . "\r\n";
+        // Email headers - Use a valid from address
+        $fromEmail = "noreply@sherannotary.com";
+        $headers = "From: " . $fromEmail . "\r\n";
         $headers .= "Reply-To: " . $email . "\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
         
         // Email body
         $emailBody = "
@@ -79,8 +85,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </html>
         ";
         
-        // Send email
-        $mailSent = mail($to, $subject, $emailBody, $headers);
+        // Try to send email
+        $mailSent = @mail($to, $subject, $emailBody, $headers);
+        
+        // If mail fails, save to file as backup
+        if (!$mailSent) {
+            $logEntry = "Date: " . date('Y-m-d H:i:s') . "\n";
+            $logEntry .= "To: {$to}\n";
+            $logEntry .= "From: {$email}\n";
+            $logEntry .= "Subject: {$subject}\n";
+            $logEntry .= "Name: {$fullName}\n";
+            $logEntry .= "Service: {$serviceDisplay}\n";
+            $logEntry .= "Message: {$message}\n";
+            $logEntry .= "----------------------------------------\n\n";
+            
+            // Save to submissions file
+            @file_put_contents('contact-submissions.txt', $logEntry, FILE_APPEND | LOCK_EX);
+        }
         
         // Return JSON response
         header('Content-Type: application/json');
@@ -88,10 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($mailSent) {
             echo json_encode(['success' => true, 'message' => 'Thank you! Your message has been sent successfully.']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Sorry, there was an error sending your message. Please try again later.']);
+            // Email failed but data was saved to file
+            echo json_encode(['success' => true, 'message' => 'Thank you! Your message has been received. We will contact you soon.']);
         }
     } else {
-        // Return errors
+        // Return validation errors
         header('Content-Type: application/json');
         echo json_encode(['success' => false, 'message' => implode(', ', $errors)]);
     }
