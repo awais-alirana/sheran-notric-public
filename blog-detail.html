@@ -513,6 +513,78 @@
         #tableOfContents::-webkit-scrollbar-thumb:hover {
             background: #cbd5e0;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Blog content mobile adjustments */
+            .blog-content h1 {
+                font-size: 1.75rem !important;
+            }
+            
+            .blog-content h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .blog-content h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            .blog-content p {
+                font-size: 1rem !important;
+                line-height: 1.7 !important;
+            }
+            
+            .blog-content {
+                padding: 1rem !important;
+            }
+            
+            /* Sidebar mobile adjustments */
+            aside {
+                margin-top: 2rem !important;
+            }
+            
+            .sidebar-blog-item img {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            /* Table of contents mobile */
+            #tableOfContents {
+                max-height: 200px !important;
+            }
+            
+            /* Hero section mobile */
+            #blogImage {
+                height: 200px !important;
+            }
+            
+            #blogTitle {
+                font-size: 1.5rem !important;
+            }
+            
+            #blogExcerpt {
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .blog-content h1 {
+                font-size: 1.5rem !important;
+            }
+            
+            .blog-content h2 {
+                font-size: 1.25rem !important;
+            }
+            
+            .blog-content p {
+                font-size: 0.95rem !important;
+            }
+            
+            #blogTitle {
+                font-size: 1.25rem !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -552,7 +624,7 @@
                     <a href="services.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
                     <a href="blog.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Blog</a>
                     <a href="contact.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
-                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                    <button onclick="window.location.href='contact.html'" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                         Book an Appointment
                     </button>
                 </div>
@@ -571,7 +643,7 @@
                 <a href="services.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
                 <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
-                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                <button onclick="window.location.href='contact.html'" class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                     Book an Appointment
                 </button>
             </div>
@@ -609,7 +681,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-3 gap-8">
                 <!-- Left Side - Sidebar/Table of Contents -->
-                <aside class="lg:col-span-1" role="complementary" aria-label="Sidebar">
+                <aside class="lg:col-span-1 order-2 lg:order-1" role="complementary" aria-label="Sidebar">
                     <!-- Table of Contents Widget -->
                     <nav class="bg-white rounded-lg shadow-lg p-6 sticky-toc" aria-label="Table of contents">
                         <h3 class="text-lg font-bold text-gray-800 mb-4" style="font-family: 'Playfair Display', serif;">Table of Contents</h3>
@@ -629,7 +701,7 @@
                 </aside>
                 
                 <!-- Right Side - Blog Content -->
-                <div class="lg:col-span-2">
+                <div class="lg:col-span-2 order-1 lg:order-2">
                     <!-- Loading State -->
                     <div id="loadingState" class="bg-white rounded-lg shadow-lg p-12 text-center" role="status" aria-live="polite">
                         <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
@@ -809,8 +881,6 @@
                 });
             }
             
-            // Mobile menu functionality
-            setupMobileMenu();
         });
         
         async function loadBlogDetail() {
@@ -1223,30 +1293,9 @@
             });
         }
         
-        function setupMobileMenu() {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const hamburgerIcon = document.getElementById('hamburger-icon');
-            const closeIcon = document.getElementById('close-icon');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                hamburgerIcon.classList.toggle('opacity-0');
-                hamburgerIcon.classList.toggle('rotate-[-90deg]');
-                closeIcon.classList.toggle('opacity-0');
-                closeIcon.classList.toggle('rotate-[-90deg]');
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-                    mobileMenu.classList.add('hidden');
-                    hamburgerIcon.classList.remove('opacity-0');
-                    hamburgerIcon.classList.remove('rotate-[-90deg]');
-                    closeIcon.classList.add('opacity-0');
-                    closeIcon.classList.add('rotate-[-90deg]');
-                }
-            });
-        }
     </script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
 </body>
 </html>

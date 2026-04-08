@@ -143,6 +143,23 @@
         .nav-link.active::after {
             width: 100%;
         }
+        
+        /* Mobile CTA Styling */
+        @media (max-width: 768px) {
+            .cta-section h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section button,
+            .cta-section a {
+                padding: 10px 20px !important;
+                font-size: 14px !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -182,7 +199,7 @@
                     <a href="services.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
                     <a href="blog.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Blog</a>
                     <a href="contact.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
-                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                    <button onclick="window.location.href='contact.html'" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                         Book an Appointment
                     </button>
                 </div>
@@ -201,7 +218,7 @@
                 <a href="services.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
                 <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
-                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                <button onclick="window.location.href='contact.html'" class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                     Book an Appointment
                 </button>
             </div>
@@ -314,7 +331,7 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="py-12 md:py-16 lg:py-20 relative overflow-hidden">
+    <section class="cta-section py-12 md:py-16 lg:py-20 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/CTA-img.jpg"
@@ -778,31 +795,6 @@
             if (loadMoreBtn) {
                 loadMoreBtn.addEventListener('click', loadMoreBlogs);
             }
-            
-            // Mobile menu functionality
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const hamburgerIcon = document.getElementById('hamburger-icon');
-            const closeIcon = document.getElementById('close-icon');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                hamburgerIcon.classList.toggle('opacity-0');
-                hamburgerIcon.classList.toggle('rotate-[-90deg]');
-                closeIcon.classList.toggle('opacity-0');
-                closeIcon.classList.toggle('rotate-[-90deg]');
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-                    mobileMenu.classList.add('hidden');
-                    hamburgerIcon.classList.remove('opacity-0');
-                    hamburgerIcon.classList.remove('rotate-[-90deg]');
-                    closeIcon.classList.add('opacity-0');
-                    closeIcon.classList.add('rotate-[-90deg]');
-                }
-            });
         });
     </script>
 </body>

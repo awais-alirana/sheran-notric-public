@@ -58,6 +58,18 @@
             transform: translateY(0);
         }
         
+        /* Fade in from right animation */
+        .animate-fade-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .animate-fade-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -112,6 +124,104 @@
             overflow: hidden;
             border-radius: 12px;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Hero Section */
+            .hero-section {
+                padding-top: 120px !important;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+            }
+            
+            /* Contact Cards */
+            .contact-cards-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            
+            .contact-card {
+                padding: 1.5rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                box-sizing: border-box !important;
+            }
+            
+            /* Form Section */
+            .form-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            .form-container {
+                padding: 1.5rem !important;
+            }
+            
+            /* Assistance Card */
+            .assistance-card {
+                padding: 1.5rem !important;
+            }
+            
+            .assistance-card h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                text-align: left !important;
+            }
+            
+            .footer-logo {
+                justify-content: flex-start !important;
+            }
+            
+            .footer-social {
+                justify-content: flex-start !important;
+            }
+            
+            .footer-bottom {
+                flex-direction: column !important;
+                text-align: left !important;
+                align-items: flex-start !important;
+            }
+            
+            /* Fix card centering on mobile - remove translateX offset */
+            .contact-cards-grid .animate-fade-right {
+                transform: translateX(0) !important;
+                opacity: 1 !important;
+            }
+            
+            .contact-cards-grid .animate-fade-right.animated {
+                transform: translateX(0) !important;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            
+            .contact-card h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            .form-input {
+                font-size: 16px !important; /* Prevents zoom on iOS */
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -151,7 +261,7 @@
                     <a href="services.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
                     <a href="blog.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
                     <a href="contact.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Contact</a>
-                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                    <button onclick="window.location.href='contact.html'" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                         Book an Appointment
                     </button>
                 </div>
@@ -170,7 +280,7 @@
                 <a href="services.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Blog</a>
                 <a href="contact.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
-                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                <button onclick="window.location.href='contact.html'" class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                     Book an Appointment
                 </button>
             </div>
@@ -178,7 +288,7 @@
     </nav>
 
     <!-- Contact Hero Section -->
-    <section class="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden pt-32">
+    <section class="hero-section relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden pt-32 md:pt-32">
         <!-- Background Image with Zoom Animation -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/hero-3.jpg"
@@ -195,22 +305,22 @@
                 </span>
             </div>
 
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s; font-family: 'Playfair Display', serif;">
+            <h1 class="hero-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s; font-family: 'Playfair Display', serif;">
                 Contact Us
             </h1>
 
-            <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+            <p class="hero-subtitle text-base sm:text-lg md:text-xl text-white/90 mb-6 md:mb-10 max-w-2xl mx-auto px-4 animate-fade-in-up" style="animation-delay: 0.4s">
                 Reach out to us for professional notary services tailored to your needs
             </p>
         </div>
     </section>
 
     <!-- Contact Info Cards Section -->
-    <section class="py-12 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-6">
+    <section class="py-8 md:py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="contact-cards-grid grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <!-- Phone Card -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="contact-card bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-fade-right" style="transition-delay: 0s;">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-phone-alt text-primary text-2xl"></i>
                     </div>
@@ -222,7 +332,7 @@
                 </div>
 
                 <!-- Email Card -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="contact-card bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-fade-right" style="transition-delay: 0.2s;">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-envelope text-primary text-2xl"></i>
                     </div>
@@ -234,7 +344,7 @@
                 </div>
 
                 <!-- Address Card -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="contact-card bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300 animate-fade-right" style="transition-delay: 0.4s;">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-map-marker-alt text-primary text-2xl"></i>
                     </div>
@@ -249,9 +359,9 @@
     </section>
 
     <!-- Contact Form & Map Section -->
-    <section class="py-16 bg-light-gray">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-start">
+    <section class="py-12 md:py-16 bg-light-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="form-grid grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
                 <!-- Left Side: Title, Description & Assistance Card -->
                 <div class="space-y-8">
                     <div class="animate-on-scroll">
@@ -262,8 +372,8 @@
                     </div>
 
                     <!-- Quick Contact -->
-                    <div class="bg-primary text-white p-8 rounded-lg shadow-lg animate-on-scroll">
-                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">
+                    <div class="assistance-card bg-primary text-white p-6 md:p-8 rounded-lg shadow-lg animate-on-scroll">
+                        <h3 class="text-xl md:text-2xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">
                             Need Immediate Assistance?
                         </h3>
                         <p class="text-white/90 mb-6">
@@ -278,7 +388,7 @@
                 </div>
 
                 <!-- Right Side: Contact Form -->
-                <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg animate-on-scroll">
+                <div class="form-container bg-white p-6 sm:p-8 md:p-12 rounded-lg shadow-lg animate-on-scroll">
                     <form id="contactForm" class="space-y-6">
                         <div>
                             <label class="block text-gray-700 font-semibold mb-2">Full Name *</label>
@@ -336,7 +446,7 @@
 
     <!-- Full Width Map Section -->
     <section class="w-full">
-        <div class="w-full h-[300px] md:h-[400px]">
+        <div class="w-full h-[250px] sm:h-[300px] md:h-[400px]">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2609.0!2d-122.856!3d49.161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5485d8e5c2b8d6e7%3A0x5e0d2a5c5e5d5e5e!2s12823+96+Ave%2C+Surrey%2C+BC+V3V+1Y2!5e0!3m2!1sen!2sca!4v1"
                 width="100%"
@@ -350,12 +460,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
+    <footer class="bg-dark text-white py-10 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="footer-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-16 md:h-[100px] w-auto">
+                    <div class="footer-logo flex items-center space-x-3 mb-4">
+                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-12 sm:h-16 md:h-[100px] w-auto">
                     </div>
                     <p class="text-gray-400">
                         Professional and reliable notary services for all your legal documentation needs.
@@ -393,8 +503,8 @@
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8">
-                <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="border-t border-gray-700 mt-6 md:mt-8 pt-6 md:pt-8">
+                <div class="footer-bottom flex flex-col md:flex-row items-center justify-between gap-4">
                     <p class="text-gray-400 text-sm mb-4 md:mb-0">
                         &copy; 2024 Notary Public Services. All rights reserved.
                     </p>
@@ -457,6 +567,11 @@
         }, observerOptions);
 
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observer for right-to-left fade animation
+        document.querySelectorAll('.animate-fade-right').forEach(el => {
             observer.observe(el);
         });
 

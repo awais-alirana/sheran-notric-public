@@ -135,6 +135,23 @@
             background-color: #1e3a5f;
             color: white;
         }
+        
+        /* Mobile CTA Styling */
+        @media (max-width: 768px) {
+            .cta-section h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section button,
+            .cta-section a {
+                padding: 10px 20px !important;
+                font-size: 14px !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -174,7 +191,7 @@
                     <a href="services.html" class="text-primary font-medium active" style="font-family: 'Playfair Display', serif;">Services</a>
                     <a href="blog.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
                     <a href="contact.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
-                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                    <button onclick="window.location.href='contact.html'" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                         Book an Appointment
                     </button>
                 </div>
@@ -193,7 +210,7 @@
                 <a href="services.html" class="block py-2 text-primary font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Blog</a>
                 <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
-                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                <button onclick="window.location.href='contact.html'" class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                     Book an Appointment
                 </button>
             </div>
@@ -633,7 +650,7 @@
     </script>
 
     <!-- CTA Section -->
-    <section class="py-12 md:py-16 lg:py-20 relative overflow-hidden">
+    <section class="cta-section py-12 md:py-16 lg:py-20 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/CTA-img.jpg" 
@@ -737,48 +754,30 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Scroll animations -->
     <script>
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        const closeIcon = document.getElementById('close-icon');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            hamburgerIcon.classList.toggle('opacity-0');
-            hamburgerIcon.classList.toggle('rotate-[-90deg]');
-            closeIcon.classList.toggle('opacity-0');
-            closeIcon.classList.toggle('rotate-0');
-        });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
 
-        // Close mobile menu when clicking on a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                hamburgerIcon.classList.remove('opacity-0', 'rotate-[-90deg]');
-                closeIcon.classList.add('opacity-0', 'rotate-[-90deg]');
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
             });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
         });
     </script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
 </body>
 </html>

@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If no errors, send email
     if (empty($errors)) {
         // Email recipient
-        $to = "awaisalirana93@gmail.com";
+        $to = "thindnotary@gmail.com";
         
         // Email subject
         $subject = "New Contact Form Submission - " . $serviceDisplay;

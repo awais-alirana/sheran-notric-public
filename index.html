@@ -248,6 +248,136 @@
         .nav-link:hover::after {
             width: 100%;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Hero Section */
+            .hero-title {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+            }
+            
+            /* About Section */
+            .about-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            .about-feature-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Services Section - 2 cards per row on mobile, hide descriptions */
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+            
+            .service-card {
+                padding: 1rem !important;
+            }
+            
+            .service-card p {
+                display: none !important;
+            }
+            
+            .service-card h3 {
+                font-size: 0.875rem !important;
+                margin-bottom: 0 !important;
+            }
+            
+            .service-card .w-16 {
+                width: 3rem !important;
+                height: 3rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .service-card .w-16 i {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Testimonials */
+            .testimonial-carousel {
+                padding: 0 1rem !important;
+            }
+            
+            .testimonial-card {
+                min-width: 100% !important;
+                padding: 1.5rem !important;
+            }
+            
+            /* CTA Section */
+            .cta-title {
+                font-size: 1.75rem !important;
+            }
+            
+            .cta-subtitle {
+                font-size: 1rem !important;
+            }
+            
+            .cta-button,
+            button.cta-button,
+            .cta-section .cta-button,
+            .cta-section button.cta-button {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.875rem !important;
+                min-height: auto !important;
+                height: auto !important;
+                line-height: 1.2 !important;
+            }
+            
+            @media (max-width: 767px) {
+                .mobile-cta-btn {
+                    padding: 8px 16px !important;
+                    font-size: 14px !important;
+                    min-height: auto !important;
+                    height: auto !important;
+                }
+            }
+            
+            @media (min-width: 768px) {
+                .mobile-cta-btn {
+                    padding: 16px 32px !important;
+                    font-size: 18px !important;
+                }
+            }
+            
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                text-align: left !important;
+            }
+            
+            .footer-logo {
+                justify-content: flex-start !important;
+            }
+            
+            .footer-bottom {
+                flex-direction: column !important;
+                text-align: left !important;
+                align-items: flex-start !important;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.75rem !important;
+            }
+            
+            .section-title {
+                font-size: 1.5rem !important;
+            }
+            
+            .service-card h3 {
+                font-size: 1.125rem !important;
+            }
+        }
        
     </style>
 </head>
@@ -288,7 +418,7 @@
                     <a href="services.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Services</a>
                     <a href="blog.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Blog</a>
                     <a href="contact.html" class="text-gray-800 hover:text-primary transition-colors font-medium" style="font-family: 'Playfair Display', serif;">Contact</a>
-                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                    <button onclick="window.location.href='contact.html'" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                         Book an Appointment
                     </button>
                 </div>
@@ -307,7 +437,7 @@
                 <a href="services.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Services</a>
                 <a href="blog.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Blog</a>
                 <a href="contact.html" class="block py-2 text-gray-800 hover:text-primary" style="font-family: 'Playfair Display', serif;">Contact</a>
-                <button class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
+                <button onclick="window.location.href='contact.html'" class="mt-4 w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all font-semibold" style="font-family: 'Playfair Display', serif;">
                     Book an Appointment
                 </button>
             </div>
@@ -338,11 +468,11 @@
                 </span>
             </div>
             
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s">
+            <h1 class="hero-title text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s">
                 Professional Notary Services
             </h1>
             
-            <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+            <p class="hero-subtitle text-base sm:text-lg md:text-xl text-white/90 mb-6 md:mb-10 max-w-2xl mx-auto px-4 animate-fade-in-up" style="animation-delay: 0.4s">
                 Fast, reliable & certified document notarization for all your legal needs in British Columbia
             </p>
             
@@ -358,11 +488,11 @@
 
 
        <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+    <section id="about" class="py-12 md:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="about-grid grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <!-- Content on Left -->
-                <div class="about-animate-right order-2 md:order-1">
+                <div class="about-animate-right">
                     <div class="inline-flex items-center mb-4">
                         <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
                             <i class="fas fa-star mr-2"></i>Who We Are
@@ -377,7 +507,7 @@
                     </p>
                     
                     <!-- Feature List -->
-                    <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="about-feature-grid grid grid-cols-2 gap-3 md:gap-4 mb-8">
                         <div class="flex items-center space-x-3 p-3 bg-light-gray rounded-lg">
                             <i class="fas fa-check-circle text-primary text-xl"></i>
                             <span class="text-gray-700 font-medium">Licensed & Insured</span>
@@ -403,7 +533,7 @@
                 </div>
                 
                 <!-- Image on Right -->
-                <div class="about-animate-left order-1 md:order-2">
+                <div class="about-animate-left">
                     <div class="relative">
                         <img src="/assets/images/about-img.jpg" 
                              alt="Professional Notary" 
@@ -419,22 +549,22 @@
 
 
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-[#F5F5F5]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12 animate-on-scroll">
+    <section id="services" class="py-12 md:py-16 bg-[#F5F5F5]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-8 md:mb-12 animate-on-scroll">
                 <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4 inline-block">
                     <i class="fas fa-briefcase mr-2"></i>What We Offer
                 </span>
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
+                <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     Comprehensive notary services tailored to meet your legal documentation needs
                 </p>
             </div>
             
-            <!-- Services Grid - 3 Columns -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Services Grid -->
+            <div class="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                   <!-- Service Card 5 - Real Estate -->
-                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="service-card service-animate-left group relative bg-white p-5 md:p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
                     <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
                     <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
@@ -446,7 +576,7 @@
                 </div>
                 
                 <!-- Service Card 1 - Letter of Invitation -->
-                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="service-card service-animate-left group relative bg-white p-5 md:p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
                     <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
                     <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
@@ -458,7 +588,7 @@
                 </div>
                 
                 <!-- Service Card 2 - Powers of Attorney -->
-                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="service-card service-animate-right group relative bg-white p-5 md:p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
                     <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
                     <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
@@ -470,7 +600,7 @@
                 </div>
                 
                 <!-- Service Card 3 - Witness of Signature -->
-                <div class="service-card service-animate-left group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="service-card service-animate-left group relative bg-white p-5 md:p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
                     <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
                     <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
@@ -482,7 +612,7 @@
                 </div>
                 
                 <!-- Service Card 4 - Statutory Declarations & Affidavits -->
-                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="service-card service-animate-right group relative bg-white p-5 md:p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
                     <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
                     <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
@@ -495,7 +625,7 @@
                 
               
                 <!-- Service Card 6 - Proof of Identity -->
-                <div class="service-card service-animate-right group relative bg-white p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="service-card service-animate-right group relative bg-white p-5 md:p-6 rounded-lg shadow-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
                     <div class="absolute bottom-0 left-0 w-full h-0 bg-primary transition-all duration-500 ease-in-out group-hover:h-full"></div>
                     <div class="relative z-10 transition-all duration-300 group-hover:text-white text-center">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto transition-all duration-300 group-hover:bg-white">
@@ -506,15 +636,23 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- View All Services Button -->
+            <div class="text-center mt-8 md:mt-12 animate-on-scroll">
+                <a href="services.html" 
+                   class="inline-flex items-center bg-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 shadow-lg" style="font-family: 'Playfair Display', serif;">
+                    View All Services <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Client Testimonials</h2>
-                <p class="text-lg text-gray-600">What our clients say about our services</p>
+    <section id="testimonials" class="py-12 md:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-8 md:mb-12 animate-on-scroll">
+                <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">Client Testimonials</h2>
+                <p class="text-base md:text-lg text-gray-600">What our clients say about our services</p>
             </div>
             
             <div class="relative max-w-6xl mx-auto overflow-hidden">
@@ -544,7 +682,7 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="py-16 md:py-24 lg:py-[100px] relative overflow-hidden">
+    <section class="cta-section py-12 md:py-16 lg:py-24 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/CTA-img.jpg" 
@@ -556,15 +694,16 @@
         <div class="absolute inset-0 bg-black/70 z-10"></div>
         
         <!-- Content -->
-        <div class="relative z-20 max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll text-white">
+        <div class="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="cta-title text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 animate-on-scroll text-white">
                 Ready to Get Your Documents Notarized?
             </h2>
-            <p class="text-xl mb-8 animate-on-scroll text-white">
+            <p class="cta-subtitle text-lg md:text-xl mb-6 md:mb-8 animate-on-scroll text-white">
                 Contact us today for professional and reliable notary services
             </p>
-            <button onclick="document.getElementById('contact').scrollIntoView()" 
-                    class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg animate-on-scroll" style="font-family: 'Playfair Display', serif;">
+            <button onclick="window.location.href='contact.html'" 
+                    class="mobile-cta-btn bg-white text-primary rounded-full font-bold hover:bg-primary hover:text-white transition-all duration-300 shadow-lg animate-on-scroll md:px-8 md:py-4 md:text-lg" 
+                    style="font-family: 'Playfair Display', serif; padding: 6px 12px !important; font-size: 13px !important; transform: none !important;">
                 Get Started Now
             </button>
         </div>
@@ -574,13 +713,12 @@
     
  
     <!-- Footer -->
-    <footer class="bg-dark text-white py-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
+    <footer class="bg-dark text-white py-10 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="footer-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-16 md:h-[100px] w-auto">
-                        
+                    <div class="footer-logo flex items-center space-x-3 mb-4">
+                        <img src="assets/images/logo.jpg" alt="Notary Public" class="h-12 sm:h-16 md:h-[100px] w-auto">
                     </div>
                     <p class="text-gray-400">
                         Professional and reliable notary services for all your legal documentation needs.
@@ -618,8 +756,8 @@
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8">
-                <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="border-t border-gray-700 mt-6 md:mt-8 pt-6 md:pt-8">
+                <div class="footer-bottom flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     <!-- Copyright - Left Side -->
                     <p class="text-gray-400 text-sm mb-4 md:mb-0">
                         &copy; 2024 Notary Public Services. All rights reserved.
@@ -665,5 +803,27 @@
     
     <!-- Custom JS -->
     <script src="script.js"></script>
+    
+    <!-- Force CTA button size on mobile -->
+    <script>
+        (function() {
+            function updateCTAButton() {
+                const btn = document.querySelector('.mobile-cta-btn');
+                if (!btn) return;
+                
+                if (window.innerWidth < 768) {
+                    btn.style.setProperty('padding', '6px 12px', 'important');
+                    btn.style.setProperty('font-size', '13px', 'important');
+                } else {
+                    btn.style.setProperty('padding', '16px 32px', 'important');
+                    btn.style.setProperty('font-size', '18px', 'important');
+                }
+            }
+            
+            updateCTAButton();
+            window.addEventListener('resize', updateCTAButton);
+            document.addEventListener('DOMContentLoaded', updateCTAButton);
+        })();
+    </script>
 </body>
 </html>
