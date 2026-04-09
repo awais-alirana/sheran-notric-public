@@ -148,13 +148,18 @@ const whyChooseObserver = new IntersectionObserver((entries) => {
 
 // Services section scroll animation
 const servicesObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
+            // Add staggered delay based on position in row (0, 1, 2 for 3 columns)
+            const delay = (index % 3) * 150;
+            setTimeout(() => {
+                entry.target.classList.add('animate');
+            }, delay);
         }
     });
 }, {
-    threshold: 0.2
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
 });
 
 // FAQ section scroll animations

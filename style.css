@@ -10,6 +10,33 @@
 }
 
 /* ============================================
+   NAVBAR HOVER ANIMATION - Bottom Border
+   ============================================ */
+
+/* Desktop navbar menu items hover animation */
+/* Target desktop menu items - using descendant combinator */
+nav div[class*="hidden"][class*="md:flex"] > a {
+    position: relative;
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+nav div[class*="hidden"][class*="md:flex"] > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #1e3a5f;
+    transition: width 0.3s ease-in-out;
+}
+
+nav div[class*="hidden"][class*="md:flex"] > a:hover::after {
+    width: 100%;
+}
+
+/* ============================================
    GLOBAL TYPOGRAPHY - Playfair Display & Open Sans
    ============================================ */
 
@@ -88,22 +115,27 @@ a, button, .btn, [class*="btn"], [class*="button"] {
 }
 
 /* Services scroll animations */
+.service-animate-left,
+.service-animate-right {
+    will-change: transform, opacity;
+}
+
 .service-animate-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.8s ease-out;
+    opacity: 0 !important;
+    transform: translateX(-80px) !important;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 .service-animate-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.8s ease-out;
+    opacity: 0 !important;
+    transform: translateX(80px) !important;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 .service-animate-left.animate,
 .service-animate-right.animate {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1 !important;
+    transform: translateX(0) !important;
 }
 
 .animate-on-scroll {
