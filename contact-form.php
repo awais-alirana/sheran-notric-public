@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullName = isset($_POST['fullName']) ? htmlspecialchars(trim($_POST['fullName'])) : '';
     $email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : '';
     $service = isset($_POST['service']) ? htmlspecialchars(trim($_POST['service'])) : '';
+    $appointmentDate = isset($_POST['appointmentDate']) ? htmlspecialchars(trim($_POST['appointmentDate'])) : '';
     $message = isset($_POST['message']) ? htmlspecialchars(trim($_POST['message'])) : '';
     
     // Validate required fields
@@ -77,9 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td style='padding: 10px; border-bottom: 1px solid #ddd;'>{$serviceDisplay}</td>
                 </tr>
                 <tr>
-                    <td style='padding: 10px; font-weight: bold; vertical-align: top;'>Message:</td>
-                    <td style='padding: 10px;'>" . nl2br($message) . "</td>
-                </tr>
+    <td style='padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;'>Preferred Appointment Date:</td>
+    <td style='padding: 10px; border-bottom: 1px solid #ddd;'>" . ($appointmentDate ? $appointmentDate : 'Not specified') . "</td>
+</tr>
+<tr>
+    <td style='padding: 10px; font-weight: bold; vertical-align: top;'>Message:</td>
+    <td style='padding: 10px;'>" . nl2br($message) . "</td>
+</tr>
             </table>
         </body>
         </html>
@@ -96,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $logEntry .= "Subject: {$subject}\n";
             $logEntry .= "Name: {$fullName}\n";
             $logEntry .= "Service: {$serviceDisplay}\n";
+            $logEntry .= "Appointment Date: " . ($appointmentDate ? $appointmentDate : 'Not specified') . "\n";
             $logEntry .= "Message: {$message}\n";
             $logEntry .= "----------------------------------------\n\n";
             
