@@ -35,14 +35,20 @@ This is a complete business website for a certified Notary Public service provid
 | **Tailwind CSS** | Utility-first CSS framework for rapid styling |
 | **Font Awesome** | Icons and iconography |
 | **Google Fonts** | Typography (Playfair Display, Open Sans) |
+| **Firebase** | Database, authentication, and hosting |
+| **PHP** | Server-side form processing |
 
 ### Key Features
 - ✅ Responsive design (mobile-first approach)
+- ✅ Multi-page website (Home, About, Services, Contact, Blog)
+- ✅ Admin panel with login authentication
+- ✅ Firebase integration for blog and testimonials
+- ✅ PHP contact form with email functionality
 - ✅ Smooth scroll animations
 - ✅ Interactive testimonial carousel
 - ✅ Mobile hamburger menu
 - ✅ Animated service cards with hover effects
-- ✅ Contact form with validation
+- ✅ Contact form with appointment date field
 - ✅ Hero section with background animations
 
 ---
@@ -51,17 +57,30 @@ This is a complete business website for a certified Notary Public service provid
 
 ```
 sheran-notric-public/
-├── index.html          # Main landing page
-├── script.js           # JavaScript functionality
-├── style.css           # Custom CSS styles
+├── index.html              # Main landing page (root)
+├── admin.html              # Admin panel (root, login: admin/admin123)
+├── contact-form.php        # PHP form handler
 ├── assets/
-│   └── images/         # Website images
-│       ├── logo.jpg
-│       ├── hero-6.jpg
-│       ├── about-img.jpg
-│       └── ...
-├── .git/               # Git repository
-└── README.md           # This file
+│   ├── css/
+│   │   └── style.css       # Custom CSS styles
+│   ├── js/
+│   │   ├── script.js       # Main JavaScript
+│   │   ├── admin.js        # Admin panel JS
+│   │   ├── env.js          # Environment config
+│   │   └── firebase-config.js    # Firebase config
+│   ├── images/             # Website images
+│   │   ├── logo.jpg
+│   │   ├── hero-*.jpg
+│   │   ├── about-img.jpg
+│   │   └── ...
+│   └── pages/              # HTML pages (organized)
+│       ├── about.html      # About Us page
+│       ├── services.html   # Services page
+│       ├── contact.html    # Contact page with form
+│       ├── blog.html       # Blog listing page
+│       └── blog-detail.html # Individual blog post page
+├── .git/                   # Git repository
+└── README.md               # This file
 ```
 
 ---
@@ -117,12 +136,16 @@ sheran-notric-public/
 - Service descriptions
 
 **Services Offered:**
-1. Letter of Invitation
-2. Powers of Attorney
-3. Witness of Signature
-4. Statutory Declaration
-5. Affidavit
-6. Proof of Identity
+1. Real Estate Documents
+2. Letter of Invitation
+3. Powers of Attorney
+4. Witness of Signature
+5. Statutory Declaration
+6. Affidavit
+7. Proof of Identity
+8. Travel Consent Letters
+9. Document Notarization
+10. Mobile Notary Services
 
 ### 5. Testimonials Section
 - Carousel with 6 client testimonials
@@ -135,13 +158,28 @@ sheran-notric-public/
 - Accordion-style questions
 - Smooth expand/collapse animations
 
-### 7. Contact Section
+### 7. Blog Section
+- Dynamic blog posts from Firebase
+- Individual blog detail pages
+- Admin panel for blog management
+- Create, edit, delete blog posts
+
+### 8. Admin Panel
+- Secure login authentication (username: `admin`, password: `admin123`)
+- Blog management (CRUD operations)
+- Testimonial management
+- Session-based authentication
+- Responsive admin dashboard
+
+### 9. Contact Section
 - Contact information display
 - Contact form with validation
+- Appointment date selection
 - Google Maps integration
 - Social media links
+- PHP email functionality
 
-### 8. Footer
+### 10. Footer
 - Quick links
 - Contact information
 - Social media icons
@@ -314,6 +352,8 @@ All rights reserved.
 | Version | Date | Changes |
 |---------|------|---------|
 | v1.0 | April 2026 | Initial release with all core features |
+| v1.1 | April 2026 | Multi-page structure, Admin panel with auth, Contact form with PHP, Firebase integration |
+| v1.2 | May 2026 | File reorganization - moved all HTML pages to assets/pages/ (except index.html and admin.html) |
 
 ---
 
